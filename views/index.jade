@@ -1,5 +1,96 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+	// HEADER BAR
+	#bar(class='bar')
+	
+		#logo(class='logo')
+			img#logoImg(class='logoImg' src='../images/Logo.png')
+
+		#container(class='container')
+        
+			// LOGIN POP
+			#loginContainer(class='buttonWrapper')
+            
+				a#loginButton(class='loginButton')
+					span Login
+				#loginBox(class='loginBox')
+                
+					form#loginForm(class='loginForm')
+						fieldset#popLogin
+							span
+								a#problemLogin(name='problemLogin' class='problem')
+							fieldset
+								label Email
+								input#emailLogin(type='text' name='emailLogin')
+							fieldset
+								label(for='password') Password
+								input#passwordLogin(type='password' name='passwordLogin')
+							input#login(type='submit' value='Sign In')
+			// / LOGIN POP
+			// REGISTER POP                
+			#registerContainer(class='buttonWrapper')
+            
+				a#registerButton(class='registerButton')
+					span Register
+				#registerBox(class='registerBox')
+                
+					form#registerForm(class='registerForm')
+						fieldset#popRegister
+							span
+								a#problemRegister(name='problemRegister' class='problem')
+							fieldset
+								label Email
+								input#emailRegister(type='text' name='emailRegister')
+							fieldset
+								label(for='password') Password
+								input#passwordRegister(type='password' name='passwordRegister')
+							fieldset
+								label(for='password') Confirm Password
+								input#passwordRegisterConf(type='password' name='passwordRegisterConf')
+							fieldset
+								label First Name
+								input#nameRegister(type='text' name='nameRegister')
+							fieldset
+								label Last Name
+								input#lastNameRegister(type='text' name='lastNameRegister')
+							input#register(type='submit' value='Sign Up')
+			// / REGISTER POP
+    
+	// / HEADER BAR 
+	// NEW QUOTE FORM	
+	#newQuoteContainer(class='newQuoteContainer')
+		h2#newQuoteTitle(class='newQuoteTitle') ✩ NEW QUOTE ✩
+	
+		form#newQuoteForm(class='newQuoteForm')
+			fieldset
+				label New Quote
+				br
+				input#newQuoteText(type='text' class='newQuoteText' name='newQuoteText' placeholder='Quote')
+				select#newQuoteAuthor(form='text' class='newQuoteAuthor' name='newQuoteAuthor' placeholder='Author')
+			input#sendNewQuote(type='submit' value='Quote It!')
+	// / NEW QUOTE FORM   
+	// MAIN PAGE
+	#mainWrapper(class='wrapper')
+	
+		// TOP QUOTES
+		#topQuotes(class='topQuotes')
+			h2#topQuotesTitle(class='topQuotesTitle') ✩ TOP QUOTES ✩
+			
+			#topQuotesWrapper(class='topQuotesWrapper')
+			
+		// / TOP QUOTES
+		// OTHER QUOTES
+		#otherQuotes(class='otherQuotes')
+			h2#otherQuotesTitle(class='otherQuotesTitle') ✩ OTHER QUOTES ✩
+			
+			#otherQuotesBody
+		
+		// / OTHER QUOTES
+	// / MAIN PAGE
+	// USER PAGE
+	#userWrapper(class='userWrapper')
+		h2#userQuotesTitle(class='userQuotesTitle') ✩ MY QUOTES ✩
+		
+		#userQuotesWrapper(class='userQuotesWrapper')
