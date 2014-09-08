@@ -1,0 +1,586 @@
+// Userlist data array for filling the select inputs
+var userListData = [];
+var thisUser = '';
+var userCompleteName = '';
+var userName = '';
+
+// DOM Ready =============================================================
+$(document).ready(function() {
+	
+	// Populate the quote table in initial page load
+	loadPage();
+
+	// Register User button click
+	$('#register').on('click', registerUser);
+
+	// Login button click
+	$('#login').on('click', login);
+
+	// Add quote click
+	$('#sendNewQuote').on('click', sendNewQuote);
+	
+	// Logo click
+	$('#logoImg').on('click', showHome);
+	
+	// Other Quotes click
+	$('#otherQuotesTitle').on('click', showOtherQuotes);
+	
+	// Add some animation
+	$('#otherQuotesTitle').mouseover(function() {
+
+		$('#otherQuotesTitle').css('color', 'aquamarine');
+	}); 
+	
+	$('#otherQuotesTitle').mouseout(function() {
+
+		$('#otherQuotesTitle').css('color', 'transparent');
+	}); 
+
+});
+
+// Functions =============================================================
+
+// Fill page with data
+function loadPage() {
+	
+	$('#newQuoteContainer').hide();
+	$('#userWrapper').hide();
+	$('#otherQuotesBody').hide();
+
+	fillQuotes();
+};
+
+function fillQuotes() {
+	
+	$.getJSON('/quotes/quotelist', function(data) {
+
+		// Clear data
+		document.getElementById('topQuotesWrapper').innerHTML='';
+		document.getElementById('otherQuotesBody').innerHTML='';
+
+		// Stick our quote data array into a quotelist variable in the global object
+		quoteListData = data;
+		var idx = 1;
+
+		// For each item in our JSON, add a table row and cells to the content string
+		$.each(data, function() {
+			
+			text = this.quote;
+			author = this.user;
+			votes = this.votes;
+			id = this._id;
+
+			// Fill the first three
+			if (idx <= 3) {
+	
+				// Create Top Quotes HTML elements
+				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
+					'<label class="topQuoteText">' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+					author + '</label></fieldset>');
+				
+				idx++;
+			} else {
+				
+				// Create Top Quotes HTML elements
+				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
+					'<label class="topQuoteText">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					author + '</label></fieldset>');
+			}			
+		});
+		
+		// Add click events
+		$('#topQuotesWrapper a').on('click', voteUp);
+		$('#topQuotesWrapper span').on('click', showUserPage);
+		$('#otherQuotesBody a').on('click', voteUp);
+		$('#otherQuotesBody span').on('click', showUserPage);
+		
+		// Add some decoration
+		$('#topQuotesWrapper a').mouseover(function() {
+
+			$(this).css('color', 'yellow');
+		}); 
+		$('#topQuotesWrapper a').mouseout(function() {
+	
+			$(this).css('color', '#D6C033');
+		});
+		$('#otherQuotesBody a').mouseover(function() {
+	
+			$(this).css('color', 'yellow');
+		}); 
+		$('#otherQuotesBody a').mouseout(function() {
+	
+			$(this).css('color', '#D6C033');
+		});
+		$('#topQuotesWrapper span').mouseover(function() {
+
+			$(this).css('color', 'aquamarine');
+		}); 
+		$('#topQuotesWrapper span').mouseout(function() {
+	
+			$(this).css('color', '#6699CC');
+		});
+		$('#otherQuotesBody span').mouseover(function() {
+	
+			$(this).css('color', 'aquamarine');
+		}); 
+		$('#otherQuotesBody span').mouseout(function() {
+	
+			$(this).css('color', '#6699CC');
+		});
+	});
+};
+
+// Login Form
+$(function() {
+	var buttonLogin = $('#loginButton');
+	var boxLogin = $('#loginBox');
+	var formLogin = $('#loginForm');
+	buttonLogin.mouseup(function(login) {
+		boxLogin.toggle();
+		buttonLogin.toggleClass('active');
+	});
+	formLogin.mouseup(function() {
+		return false;
+	});
+	$(this).mouseup(function(login) {
+		if (!($(login.target).parent('#loginButton').length > 0)) {
+			buttonLogin.removeClass('active');
+			boxLogin.hide();
+		}
+	});
+});
+
+// Register Form
+$(function() {
+	var buttonRegister = $('#registerButton');
+	var boxRegister = $('#registerBox');
+	var formRegister = $('#registerForm');
+	buttonRegister.mouseup(function(register) {
+		boxRegister.toggle();
+		buttonRegister.toggleClass('active');
+	});
+	formRegister.mouseup(function() {
+		return false;
+	});
+	$(this).mouseup(function(register) {
+		if (!($(register.target).parent('#registerButton').length > 0)) {
+			buttonRegister.removeClass('active');
+			boxRegister.hide();
+		}
+	});
+});
+
+// Register New User
+function registerUser(event) {
+
+	event.preventDefault();
+
+	// Get a userlist
+	$.getJSON('/users/users', function(data) {
+
+		userListData = data;
+
+		// Increase errorCount variable if any fields are blank
+		var errorCount = 0;
+		var passMiss = false;
+		var error = '';
+
+		// Error check routine
+		$('#registerBox input').each(function(index, val) {
+			if ($(this).val() === '') {
+				errorCount++;
+			}
+		});
+
+		// Check if some field is empty
+		if (errorCount !== 0) {
+
+			error = 'Please fill in all fields';
+
+		} else {
+
+			// Set flag if two passwords don't match
+			var pass = $('#passwordRegister').val();
+			var passConf = $('#passwordRegisterConf').val();
+
+			if (pass !== passConf) {
+				passMiss = true;
+			}
+
+			// Check if password and confirm password match
+			if (passMiss) {
+
+				error = "Passwords don't match";
+
+			} else {
+				// Obtain email from form
+				var email = $('#emailRegister').val();
+
+				// Get Index of object based on id value
+				var arrayPosition = userListData.map(function(arrayItem) {
+					return arrayItem.email;
+				}).indexOf(email);
+
+				var thisUserObject = userListData[arrayPosition];
+
+				// Check if email is already in use
+				if (thisUserObject !== undefined) {
+
+					error = 'Email already in use';
+				}
+			}
+		}
+
+		// Check if some error was found
+		if (error === '') {
+
+			var email = '';
+
+			// If it is, compile all user info into one object
+			var newUser = {
+				'email' : $('#emailRegister').val(),
+				'pass' : $('#passwordRegister').val(),
+				'name' : $('#nameRegister').val(),
+				'last' : $('#lastNameRegister').val()
+			};
+			
+			// Use AJAX to post the object to our adduser service
+			$.ajax({
+				type : 'POST',
+				data : newUser,
+				url : '/users/adduser',
+				dataType : 'JSON'
+			}).done(function(response) {
+	
+				// Check for successful (blank) response
+				if (response.msg === '') {
+	
+					// Store email for later use
+					email = $('#emailRegister').val();
+					pass = $('#passwordRegister').val();
+	
+					// Clear fields
+					$('#problemRegister').text('');
+					$('#emailRegister').val('');
+					$('#passwordRegister').val('');
+					$('#passwordRegisterConf').val('');
+					$('#nameRegister').val('');
+					$('#lastNameRegister').val('');
+					
+					// Login new user
+					alert('User Successfully created');
+					
+					$('#emailLogin').val(email);
+					$('#passwordLogin').val(pass);
+					
+					login(event);
+
+				} else {
+	
+					// If something goes wrong, alert the error message that our service returned
+					alert('Error: ' + response.msg);
+	
+				}
+			});			
+		} else {
+
+			// If some error was found then inform
+			$('#problemRegister').text(error);
+			return false;
+		}
+	});
+};
+
+// Show User Info
+function login(event) {
+
+	event.preventDefault();
+
+	$.getJSON('/users/users', function(data) {
+		
+		// Stick our quote data array into a quotelist variable in the global object
+		userListData = data;
+
+		// Retrieve mail from form
+		var email = $('#emailLogin').val();
+		var pass = $('#passwordLogin').val();
+
+		// Error check routine
+		var error = '';
+
+		if (email === '') {
+
+			error = 'Please fill in all fields';
+		} else if (pass === '') {
+
+			error = 'Please fill in all fields';
+		} else {
+
+			// Get Index of object based on id value
+			var arrayPosition = userListData.map(function(arrayItem) {
+				return arrayItem.email;
+			}).indexOf(email);
+
+			// Get our User Object
+			thisUser = userListData[arrayPosition];
+
+			// Check if user matches
+			if (thisUser === undefined) {
+
+				error = 'User not found';
+			} else {
+
+				var userPass = thisUser.pass;
+
+				// Check if password matches
+				if (userPass !== pass) {
+
+					error = 'Incorrect password';
+				}
+			}
+		}
+
+		if (error === '') {
+
+			updatePageLogin(thisUser, userListData);	
+		}
+		else {
+
+			// If some error was found then inform
+			$('#problemLogin').text(error);
+			return false;
+		}
+	});
+};
+
+function updatePageLogin(thisUser, userListData) {
+	
+	userCompleteName = thisUser.name + ' ' + thisUser.last;
+	
+	// Remove Login & Register buttons and put user name & log out
+	document.getElementById('registerContainer').innerHTML = 
+		'<a id="userName" href="#" class="userName" rel="' + userCompleteName + '" >' + userCompleteName + '</a>';
+	document.getElementById('loginContainer').innerHTML = 
+		'<input type="button" class="logoutButton" onclick="location.reload();" value="Log Out" />';
+		
+	// Add some decoration
+	$('#userName').mouseover(function() {
+	
+		$(this).css('color', 'aquamarine');
+	}); 
+	$('#userName').mouseout(function() {
+
+		$(this).css('color', '#348BFF');
+	});
+	
+	$('#userName').on('click', showUserPage);	
+	
+	// Populate list of users
+	$.each(userListData, function() {
+		
+		$('#newQuoteAuthor').append(
+				'<option value="' + this.email + '">' + this.name + ' ' + this.last + '</option>');
+	});
+	
+	// Clear just in case
+	$('#newQuoteText').val('');
+	
+	// Make form visible
+	$('#newQuoteContainer').show();
+};
+
+function sendNewQuote(event) {
+	
+	event.preventDefault();
+
+	// Validate if some text was found
+	if ($('#newQuoteText').val()) {
+
+		// If there is, compile all quote info into one object
+		var newQuote = {
+			'quote' : $('#newQuoteText').val(),
+			'user' : $('#newQuoteAuthor option:selected').text(),
+			'votes' : 0
+		};
+
+		// Use AJAX to post the object to our adduser service
+		$.ajax({
+			type : 'POST',
+			data : newQuote,
+			url : '/quotes/addquote',
+			dataType : 'JSON'
+		}).done(function(response) {
+
+			// Check for successful (blank) response
+			if (response.msg === '') {
+
+				// Send notification email to user quoted
+				sendEmail();
+				
+				// Clear the form inputs
+				$('#newQuoteText').val('');
+
+				// Update quote list
+				fillQuotes();
+
+			} else {
+
+				// If something goes wrong, alert the error message that our service returned
+				alert('Error: ' + response.msg);
+
+			}
+		});
+	} else {
+		
+		// If no text was found, then inform
+		alert('Please add some text');
+		return false;
+	}
+};
+
+function sendEmail() {
+
+	var emailData = {
+		'key' : 'P1R6fnbRFA-JPACrFa9L9A',
+		'message' : {
+			'from_email' : 'quote.it@globant.com',
+			'to' : [{
+				'email' : $('#newQuoteAuthor').val(),
+				'name' : $('#newQuoteAuthor option:selected').text(),
+				'type' : 'to'
+			}],
+			'autotext' : 'true',
+			'subject' : 'You´ve been quoted!',
+			'html' : $('#userName').text() + ' quoted you! - ' + $('#newQuoteText').val()
+		}
+	};
+
+	// Use AJAX to send the email
+	$.ajax({
+		type : 'POST',
+		url : "https://mandrillapp.com/api/1.0/messages/send.json",
+		data: emailData,
+	});
+};
+
+function showUserPage(event) {
+	
+	userName = $(this).attr('rel');
+	
+	showUserPageByName(userName);
+};
+
+function showUserPageByName(name) {
+	
+	userName = name;
+	
+	document.getElementById('userQuotesWrapper').innerHTML = '';
+	
+	$.getJSON('/quotes/userquotes/' + userName, function(data) {
+		
+		// Clear data
+		document.getElementById('userQuotesWrapper').innerHTML='';
+		
+		$.each(data, function() {
+		
+			votes = this.votes;
+			text = this.quote;
+			author = this.user;
+			id = this._id;
+
+			// Inject the content data into our existing HTML elements			
+			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
+					'<label class="topQuoteText">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					author + '</label></fieldset>');
+		});
+		
+		if (userName === $('#userName').text()) {
+			
+			$('#userQuotesTitle').text('✩ MY QUOTES ✩');
+		} else {
+			
+			$('#userQuotesTitle').text('✩ ' + userName + '´s QUOTES ✩');
+		}
+		
+		// Add OnClick event
+		$('#userQuotesWrapper a').on('click', voteUp);
+		
+		// Add some decoration
+		$('#userQuotesWrapper a').mouseover(function() {
+
+			$(this).css('color', 'yellow');
+		}); 
+		$('#userQuotesWrapper a').mouseout(function() {
+	
+			$(this).css('color', '#D6C033');
+		});
+		$('#userQuotesWrapper span').mouseover(function() {
+
+			$(this).css('color', 'aquamarine');
+		}); 
+		$('#userQuotesWrapper span').mouseout(function() {
+	
+			$(this).css('color', '#6699CC');
+		});
+		
+		$('#mainWrapper').hide();
+		$('#userWrapper').show();
+	});
+}
+
+function showHome() {
+		
+	fillQuotes();
+		
+	$('#mainWrapper').show();
+	$('#userWrapper').hide();
+};
+
+function voteUp(event) {
+
+	var idToVote = {
+		'id' : $(this).attr('rel')
+	};
+	
+	// Use AJAX to post the object to our adduser service
+	$.ajax({
+		type : 'POST',
+		data : idToVote,
+		url : '/quotes/vote',
+		dataType : 'JSON'
+	}).done(function(response) {
+		// Check for successful (blank) response
+		if (response.msg === '') {
+
+			// Update quote list
+			updateCurrentPage();
+
+		} else {
+			
+			// If something goes wrong, alert the error message that our service returned
+			alert('Error: ' + response.msg);
+		}
+	});
+};
+
+function updateCurrentPage() {
+	
+	if ($('#mainWrapper').is(":visible")) {
+		
+		fillQuotes();
+	} else {
+		
+		showUserPageByName(userName);
+	}
+}
+
+function showOtherQuotes() {
+	
+	if ($("#otherQuotesBody").is(":visible")) {
+		
+		$("#otherQuotesBody").hide();
+	} else {
+		
+		$("#otherQuotesBody").show();
+	}
+};

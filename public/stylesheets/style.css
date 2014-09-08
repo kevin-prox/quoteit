@@ -1,0 +1,417 @@
+fieldset {
+	border: none;
+}
+
+fieldset label {
+	font-family: arial;
+	text-shadow: 1px 1px #fff;
+}
+
+body {
+	background-color: #E4F1FA;
+}
+
+.userName:visited { 
+	text-decoration: none; 
+}
+
+.wrapper {
+	position: relative;
+}
+
+.problem {
+	color: red;
+}
+
+/* Top Quote Style */
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+  	font-size: 200%;
+  	font-style: italic; 
+  	margin: 30px;
+  	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0px 3px 3px rgba(255,255,255,0.5),0px -1px 1px rgba(0,0,0,.3);
+}
+
+.author {
+	font-family: arial;
+	font-style: oblique;
+	font-size: 90%;
+	color: #6699CC;
+	float: left;
+	margin: 10px 0px 0px 135px;
+	text-shadow: 1px 1px #fff;
+	cursor: pointer;
+}
+
+.topQuoteText {
+	font-family: Arial, Helvetica, sans-serif;
+  	font-size: 140%;
+  	font-style: italic; 
+  	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0px 3px 3px rgba(255,255,255,0.5),0px -1px 1px rgba(0,0,0,.3);
+	margin: 0px 0px 0px 20px;
+}
+
+.votes {
+	font-family: Arial, Helvetica, sans-serif;
+  	font-size: 140%;
+  	font-style: italic; 
+  	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	color: #D6C033;
+	text-shadow: 0px 3px 3px rgba(255,255,255,0.5),0px -1px 1px rgba(0,0,0,.3);
+	margin: 0px 0px 0px 50px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Login Container (default to float:right) */
+.loginContainer {
+	position: relative;
+	float: right;
+	font-size: 12px;
+}
+
+/* Login Button */
+.loginButton {
+	display: inline-block;
+	float: right;
+	background: #d2e0ea url(../images/buttonbg.png) repeat-x;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	position: relative;
+	z-index: 30;
+	cursor: pointer;
+	margin: -40px -90px 0 0;
+}
+
+/* Login Button Text */
+.loginButton span {
+	font-family: arial;
+	color: #445058;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 1px 1px #fff;
+	padding: 7px 29px 9px 10px;
+	background: url(../images/loginArrow.png) no-repeat 53px 7px;
+	display: block;
+}
+
+.loginButton:hover {
+	background: url(../images/buttonbgHover.png) repeat-x;
+}
+
+/* Login Box */
+.loginBox {
+	position: absolute;
+	top: 34px;
+	right: 0;
+	display: none;
+	z-index: 29;
+	margin: -40px -90px 0 0;
+}
+
+/* If the Login Button has been clicked */
+.loginButton.active {
+	border-radius: 3px 3px 0 0;
+}
+
+.loginButton.active span {
+	background-position: 53px -76px;
+}
+
+/* Login Form */
+.loginForm {
+	width: 248px;
+	border: 1px solid #899caa;
+	border-radius: 3px 0 3px 3px;
+	-moz-border-radius: 3px 0 3px 3px;
+	margin-top: -1px;
+	background: #d2e0ea;
+	padding: 6px;
+}
+
+.loginForm fieldset {
+	margin: 0 0 12px 0;
+	display: block;
+	border: 0;
+	padding: 0;
+}
+
+.loginForm #body fieldset label {
+	display: block;
+	float: none;
+	margin: 0 0 6px 0;
+}
+
+/* Default Input */
+.loginForm input {
+	width: 92%;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	color: #3a454d;
+	font-weight: bold;
+	padding: 8px 8px;
+	box-shadow: inset 0px 1px 3px #bbb;
+	-webkit-box-shadow: inset 0px 1px 3px #bbb;
+	-moz-box-shadow: inset 0px 1px 3px #bbb;
+	font-size: 12px;
+}
+
+/* Sign In Button */
+.loginForm #login {
+	width: auto;
+	float: left;
+	background: #339cdf url(../images/loginbuttonbg.png) repeat-x;
+	color: #fff;
+	padding: 7px 10px 8px 10px;
+	text-shadow: 0px -1px #278db8;
+	border: 1px solid #339cdf;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: 0 12px 0 0;
+	cursor: pointer;
+}
+
+/* Forgot your password */
+.loginForm span {
+	text-align: center;
+	display: block;
+	padding: 7px 0 4px 0;
+}
+
+/* Login Container (default to float:right) */
+.buttonWrapper {
+	position: relative;
+	float: right;
+	font-size: 12px;
+}
+
+/* Top Bar */
+.bar {
+	width: 100%;
+	height: 35px;
+	padding: 15px 0;
+	background: url(../images/bar.png) repeat-x;
+}
+
+.container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+/* Register Container (default to float:right) */
+.registerContainer {
+	position: relative;
+	float: right;
+	font-size: 12px;
+}
+
+/* Register Container (default to float:right) */
+.userName {
+	font-family: arial;
+	font-size: 20px;
+	margin: -40px 0 0 0;
+	float: right;
+	text-decoration: none;
+	color: #348BFF;
+}
+
+/* Register Button */
+.registerButton {
+	display: inline-block;
+	float: right;
+	background: #d2e0ea url(../images/buttonbg.png) repeat-x;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	position: relative;
+	z-index: 30;
+	cursor: pointer;
+	margin: -40px 0 0 0;
+}
+
+/* Register Button Text */
+.registerButton span {
+	font-family: arial;
+	color: #445058;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 1px 1px #fff;
+	padding: 7px 29px 9px 10px;
+	background: url(../images/loginArrow.png) no-repeat 72px 7px;
+	display: block;
+}
+
+.registerButton:hover {
+	background: url(../images/buttonbgHover.png) repeat-x;
+}
+
+/* Register Box */
+.registerBox {
+	position: absolute;
+	top: 34px;
+	right: 0;
+	display: none;
+	z-index: 29;
+	margin: -40px 0 0 0;
+}
+
+/* If the Register Button has been clicked */
+.registerButton.active {
+	border-radius: 3px 3px 0 0;
+}
+
+.registerButton.active span {
+	background-position: 72px -76px;
+}
+
+/* Register Form */
+.registerForm {
+	width: 248px;
+	border: 1px solid #899caa;
+	border-radius: 3px 0 3px 3px;
+	-moz-border-radius: 3px 0 3px 3px;
+	margin-top: -1px;
+	background: #d2e0ea;
+	padding: 6px;
+}
+
+.registerForm fieldset {
+	margin: 0 0 12px 0;
+	display: block;
+	border: 0;
+	padding: 0;
+}
+
+.registerForm #body fieldset label {
+	display: block;
+	float: none;
+	margin: 0 0 6px 0;
+}
+
+/* Default Input */
+.registerForm input {
+	width: 92%;
+	border: 1px solid #899caa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	color: #3a454d;
+	font-weight: bold;
+	padding: 8px 8px;
+	box-shadow: inset 0px 1px 3px #bbb;
+	-webkit-box-shadow: inset 0px 1px 3px #bbb;
+	-moz-box-shadow: inset 0px 1px 3px #bbb;
+	font-size: 12px;
+}
+
+/* Sign In Button */
+.registerForm #register {
+	width: auto;
+	float: left;
+	background: #339cdf url(../images/loginbuttonbg.png) repeat-x;
+	color: #fff;
+	padding: 7px 10px 8px 10px;
+	text-shadow: 0px -1px #278db8;
+	border: 1px solid #339cdf;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: 0 12px 0 0;
+	cursor: pointer;
+}
+
+/* Forgot your password */
+.registerForm span {
+	text-align: center;
+	display: block;
+	padding: 7px 0 4px 0;
+}
+
+/* Logo image style */
+.logoImg {
+	margin: -8px 0 0 18px;
+	height: 45px;
+	width: 45px;
+}
+
+.newQuoteForm {
+	margin-left: 50px;
+	margin-right: 50px;
+	border: 1px solid #899caa;
+}
+
+.newQuoteForm label {
+	font-family: Arial, Helvetica, sans-serif;
+  	font-size: 140%;
+  	font-style: italic; 
+  	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0px 3px 3px rgba(255,255,255,0.5),0px -1px 1px rgba(0,0,0,.3);
+}
+
+.newQuoteText {
+	width: 700px;
+	margin: 15px 0 0 0;
+}
+
+/* Sign In Button */
+.newQuoteForm #sendNewQuote {
+	background: #339cdf url(../images/loginbuttonbg.png) repeat-x;
+	color: #fff;
+	padding: 7px 10px 8px 10px;
+	text-shadow: 0px -1px #278db8;
+	border: 1px solid #339cdf;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: 0 12px 0 0;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 12px;
+	margin: 0px 0px 10px 10px;
+}
+
+.newQuoteAuthor {
+	float: right;
+	margin: 15px 0 0 0;
+}
+
+/* Sign In Button */
+.logoutButton {
+	width: auto;
+	float: left;
+	background: #339cdf url(../images/loginbuttonbg.png) repeat-x;
+	color: #fff;
+	padding: 7px 10px 8px 10px;
+	text-shadow: 0px -1px #278db8;
+	border: 1px solid #339cdf;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: -45px 0 0 60px;
+	cursor: pointer;
+	position: absolute;
+}
+
+.logoImg {
+	cursor: pointer;
+}
+
+.otherQuotesTitle {
+	cursor: pointer;
+}
