@@ -567,57 +567,57 @@ function voteUp(event) {
 				userVoted = true;
 			}
 		});
+		
+		// Check if user has already voted this quote
+		if (!userVoted) {
+			
+			var idToVote = {
+				'id' : quoteId
+			};
+			
+			// Use AJAX to post the object to our adduser service
+			$.ajax({
+				type : 'POST',
+				data : idToVote,
+				url : '/quotes/vote',
+				dataType : 'JSON'
+			}).done(function(response) {
+				// Check for successful (blank) response
+				if (response.msg === '') {
+		
+					// Store vote in DB
+					var vote = {'user' : $('#userName').text(),
+								'quote' : quoteId};
+					
+					$.ajax({
+						type : 'POST',
+						data : vote,
+						url : '/votes/addvote',
+						dataType : 'JSON'
+					}).done(function(response) {
+						// Check for successful (blank) response
+						if (response.msg !== '') {
+							
+							// If something goes wrong, alert the error message that our service returned
+							alert('Error: ' + response.msg);
+						}
+					});
+		
+					// Update quote list
+					updateCurrentPage();
+		
+				} else {
+					
+					// If something goes wrong, alert the error message that our service returned
+					alert('Error: ' + response.msg);
+				}
+			});
+		} else {
+			
+			// If user already voted this quote, inform
+			alert('You cannot vote a quote twice!');
+		}
 	});
-
-	// Check if user has already voted this quote
-	if (!userVoted) {
-		
-		var idToVote = {
-			'id' : quoteId
-		};
-		
-		// Use AJAX to post the object to our adduser service
-		$.ajax({
-			type : 'POST',
-			data : idToVote,
-			url : '/quotes/vote',
-			dataType : 'JSON'
-		}).done(function(response) {
-			// Check for successful (blank) response
-			if (response.msg === '') {
-	
-				// Store vote in DB
-				var vote = {'user' : $('#userName').text(),
-							'quote' : quoteId};
-				
-				$.ajax({
-					type : 'POST',
-					data : vote,
-					url : '/votes/addvote',
-					dataType : 'JSON'
-				}).done(function(response) {
-					// Check for successful (blank) response
-					if (response.msg !== '') {
-						
-						// If something goes wrong, alert the error message that our service returned
-						alert('Error: ' + response.msg);
-					}
-				});
-	
-				// Update quote list
-				updateCurrentPage();
-	
-			} else {
-				
-				// If something goes wrong, alert the error message that our service returned
-				alert('Error: ' + response.msg);
-			}
-		});
-	} else {
-		
-		// If user already voted this quote, inform
-		alert('You cannot vote a quote twice!');
-	}
 };
 
 function updateCurrentPage() {
