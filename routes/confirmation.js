@@ -9,24 +9,30 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
 		
-		/*$.each(items, function() {
+		$.each(items, function() {
 			
 			// If code sent matches code stored, then mark user as verified
 			if (this.code === req.params.code) {
 				
-				db.collection('users').update({ email : req.params.email }, { $set : { verif : 'Y' } }, 
-					function(err, result) {
+				db.collection('users').update({ email : req.params.email }, { $set : { verif : 'Y' } },
+					function(err) {
 						
-						if (err === null) {
+						if (err === '') {
 							
-							res.render('conf', { title: 'Quote It!' });
+							res.send.msg = '';
+						} else {
+							
+							res.send.msg = err;
 						}
 				});
 			}
-		});*/
-		
-		res.json(items);
+		});
 	});
+	
+	if (res.msg === '') {
+		
+		res.render('conf', { title: 'Quote It!' });
+	}
 });
 
 module.exports = router;
