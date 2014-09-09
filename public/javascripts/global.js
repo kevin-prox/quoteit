@@ -562,14 +562,14 @@ function voteUp(event) {
 		
 		$.each(data, function() {
 		
-			alert('this.quote = ' + this.quote + ' - quoteId = ' + quoteId);
-		
 			if (this.quote === quoteId) {
 				
 				userVoted = true;
 			}
 		});
 	});
+
+	alert('userVoted = ' + userVoted);
 
 	// Check if user has already voted this quote
 	if (!userVoted) {
