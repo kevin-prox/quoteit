@@ -13,7 +13,14 @@ router.get('/newuser/:email/:code', function(req, res) {
 			// If code sent matches code stored, then mark user as verified
 			if (this.code === req.params.code) {
 				
-				db.collection('users').update({ email : req.params.email }, { verif : "Y" });
+				db.collection('users').update({ email : req.params.email }, { verif : "Y" }, 
+					function(err, result) {
+						
+						if (err === null) {
+							
+							res.render('conf', { title: 'Quote It!' });
+						}
+				});
 			}
 		});
 	});
