@@ -394,7 +394,7 @@ h2 {
 /* Sign In Button */
 .logoutButton {
 	width: auto;
-	float: left;
+	float: right;
 	background: #339cdf url(../images/loginbuttonbg.png) repeat-x;
 	color: #fff;
 	padding: 7px 10px 8px 10px;
@@ -403,9 +403,9 @@ h2 {
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	margin: -45px 0 0 60px;
+	margin: -45px -140px 0px 0px;
 	cursor: pointer;
-	position: absolute;
+	position: relative;
 }
 
 .logoImg {
