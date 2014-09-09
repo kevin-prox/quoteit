@@ -4,7 +4,7 @@ var router = express.Router();
 /*
  * GET newuser.
  */
-router.get('/newuser/:email/x/:code', function(req, res) {
+router.get('/newuser/:email/x/:x', function(req, res) {
 	var db = req.db;
 	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
@@ -12,7 +12,7 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 		$.each(items, function() {
 			
 			// If code sent matches code stored, then mark user as verified
-			if (this.code === req.params.code) {
+			if (this.code === req.params.x) {
 				
 				db.collection('users').update({ email : req.params.email }, { verif : "Y" }, 
 					function(err, result) {
@@ -20,9 +20,6 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 						if (err === null) {
 							
 							res.render('conf', { title: 'Quote It!' });
-						} else {
-							
-							res.send('HOLA');
 						}
 				});
 			}
