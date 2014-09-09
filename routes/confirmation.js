@@ -11,9 +11,9 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 		
 		var text = '';
 		
-		$.each(items, function() {
+		for (var user in items) {
 			
-			text += this.code;
+			text += user.code;
 			
 			// If code sent matches code stored, then mark user as verified
 			/*if (this.code === req.params.code) {
@@ -27,7 +27,7 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 						}
 				});
 			}*/
-		});
+		}
 		
 		res.send(text);
 	});
