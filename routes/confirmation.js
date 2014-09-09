@@ -4,7 +4,7 @@ var router = express.Router();
 /*
  * GET newuser.
  */
-router.get('/newuser/:email/x/:code', function(req, res) {
+router.get('/newuser/:email/#/:code', function(req, res) {
 	var db = req.db;
 	var error = '';
 	

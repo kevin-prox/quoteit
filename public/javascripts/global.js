@@ -76,8 +76,7 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText">' + text +'</label><a class="topQuoteText" href="#" rel=' + id + '>X</a><br>' +
-					'<span class="author" rel="' + author + '" href="#">' + 
+					'<label class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
@@ -85,7 +84,7 @@ function fillQuotes() {
 				
 				// Create Top Quotes HTML elements
 				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 			}			
 		});
@@ -509,7 +508,7 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
@@ -677,7 +676,7 @@ function sendVerificationMail(email, hashCode) {
 	
 	var prefix = 'quote-it.herokuapp.com/conf/newuser/';
 	
-	var link = prefix + email + '/x/' + hashCode;
+	var link = prefix + email + '/#/' + hashCode;
 	
 	var emailData = {
 		'key' : 'P1R6fnbRFA-JPACrFa9L9A',
@@ -700,4 +699,9 @@ function sendVerificationMail(email, hashCode) {
 		url : "https://mandrillapp.com/api/1.0/messages/send.json",
 		data: emailData,
 	});
+};
+
+function deleteQuote(event) {
+	
+	
 };
