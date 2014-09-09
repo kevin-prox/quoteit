@@ -27,4 +27,25 @@ router.get('/newuser/:email/x/:x', function(req, res) {
 	});
 });
 
+/*
+ * GET newuser.
+ */
+router.get('/test/:email/x/:x', function(req, res) {
+	var db = req.db;
+	var test = '';
+	
+	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
+		
+		$.each(items, function() {
+			
+			test += json(this);
+		});
+	});
+	
+	test +=req.params.email;
+	test += req.params.x;
+	
+	res.send(test);
+});
+
 module.exports = router;
