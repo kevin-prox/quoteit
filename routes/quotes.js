@@ -53,4 +53,15 @@ router.post('/vote', function(req, res) {
 	});
 });
 
+/*
+ * DELETE to deletequote
+ */
+router.delete('/deletequote/:id', function(req, res) {
+	var db = req.db;
+	var quoteToDelete = req.params.id;
+    db.collection('quotes').removeById(ObjectId(quoteToDelete), function(err, result) {
+        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
+    });
+});
+
 module.exports = router;

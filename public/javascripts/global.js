@@ -76,7 +76,7 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+					'<label id="userQuoteText" class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
@@ -84,7 +84,7 @@ function fillQuotes() {
 				
 				// Create Top Quotes HTML elements
 				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label id="userQuoteText" class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 			}			
 		});
@@ -114,6 +114,8 @@ function fillQuotes() {
 		
 				$(this).css('color', '#D6C033');
 			});
+			
+			$('#userQuoteText').on('click', deleteQuote);
 		}
 		
 		$('#topQuotesWrapper span').mouseover(function() {
@@ -508,7 +510,7 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label id="userQuoteText" class="topQuoteText rel=' + id + '">' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
@@ -533,6 +535,8 @@ function showUserPageByName(name) {
 		
 				$(this).css('color', '#D6C033');
 			});
+			
+			$('#userQuoteText').on('click', deleteQuote);
 		}
 		
 		$('#userQuotesWrapper span').mouseover(function() {
@@ -701,7 +705,39 @@ function sendVerificationMail(email, hashCode) {
 	});
 };
 
+// Delete quote
 function deleteQuote(event) {
-	
-	
+
+    event.preventDefault();
+
+    // Pop up a confirmation dialog
+    var confirmation = confirm('Are you sure you want to delete this quote?');
+
+    // Check and make sure the user confirmed
+    if (confirmation === true) {
+
+        // If they did, do our delete
+        $.ajax({
+            type: 'DELETE',
+            url: '/quotes/deletequote/' + $(this).attr('rel')
+        }).done(function( response ) {
+
+            // Check for a successful (blank) response
+            if (response.msg === '') {
+            }
+            else {
+                alert('Error: ' + response.msg);
+            }
+
+            // Update the table
+            updateCurrentPage();
+        });
+
+    }
+    else {
+
+        // If they said no to the confirm, do nothing
+        return false;
+
+    }
 };
