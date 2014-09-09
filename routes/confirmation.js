@@ -10,7 +10,7 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
 		
-		$(items).each(function() {
+		$(items).first(function() {
 			
 			// If code sent matches code stored, then mark user as verified
 			if (this.code === req.params.code) {
