@@ -9,9 +9,11 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
 		
+		var text = '';
+		
 		$.each(items, function() {
 			
-			res.send(this.code);
+			text += this.code;
 			
 			// If code sent matches code stored, then mark user as verified
 			/*if (this.code === req.params.code) {
@@ -26,6 +28,8 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 				});
 			}*/
 		});
+		
+		res.send(text);
 	});
 });
 
