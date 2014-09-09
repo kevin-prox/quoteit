@@ -7,10 +7,11 @@ var ObjectId = require('mongoskin').ObjectID;
  */
 router.get('/newuser/:email/:code', function(req, res) {
 	var db = req.db;
+	
+	console.log('Aquí estoy');
+	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
 		$.each(items, function() {
-			
-			console.log('Code: ' + this.code);
 			
 			// If code sent matches code stored, then mark user as verified
 			if (this.code === req.params.code) {
