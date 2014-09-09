@@ -10,6 +10,8 @@ router.get('/newuser/:email/:code', function(req, res) {
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
 		$.each(items, function() {
 			
+			console.log('Code: ' + this.code);
+			
 			// If code sent matches code stored, then mark user as verified
 			if (this.code === req.params.code) {
 				
@@ -22,20 +24,6 @@ router.get('/newuser/:email/:code', function(req, res) {
 						}
 				});
 			}
-		});
-	});
-});
-
-/*
- * POST to addvote.
- */
-router.post('/addvote', function(req, res) {
-	var db = req.db;
-	db.collection('votes').insert(req.body, function(err, result) {
-		res.send((err === null) ? {
-			msg : ''
-		} : {
-			msg : err
 		});
 	});
 });
