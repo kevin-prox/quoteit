@@ -8,7 +8,7 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 	var db = req.db;
 	var error = '';
 	
-	db.collection('users').findOne({'email' : req.params.email}, function(err, items) {
+	db.collection('users').findOne({'email' : req.params.email}, function(err, result) {
 			
 		res.send(result);
 			
