@@ -10,8 +10,6 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 	
 	db.collection('users').findOne({'email' : req.params.email}, function(err, result) {
 			
-		res.send(result);
-			
 		// If code sent matches code stored, then mark user as verified
 		if (result.code === req.params.code) {
 			
@@ -26,10 +24,10 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 		}
 	});
 	
-	/*if (error === '') {
+	if (error === '') {
 		
 		res.render('conf', { title: 'Quote It!' });
-	}*/
+	}
 });
 
 module.exports = router;
