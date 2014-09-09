@@ -29,10 +29,10 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 		});
 	});
 	
-	if (error === '') {
+	//if (error === '') {
 		
-		res.render('conf', { title: 'Quote It!' });
-	}
+		//res.render('conf', { title: 'Quote It!' });
+	//}
 });
 
 module.exports = router;
