@@ -19,7 +19,6 @@ router.get('/newuser/:email/#/:code', function(req, res) {
 						
 						if (err === null) {
 							
-							res.render('conf', { title: 'Quote It!' });
 						}
 				});
 			}
