@@ -14,7 +14,7 @@ router.get('/newuser/:email/x/:code', function(req, res) {
 			// If code sent matches code stored, then mark user as verified
 			if (this.code === req.params.code) {
 				
-				res.json('TEST');
+				res.send({msg : 'TEST'});
 				
 				/*db.collection('users').update({ email : req.params.email }, { $set : { verif : 'Y' } }, 
 					function(err, result) {
