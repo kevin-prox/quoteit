@@ -38,7 +38,7 @@ router.get('/test/:email/x/:x', function(req, res) {
 		
 		$.each(items, function() {
 			
-			test += json(this);
+			test += this.name;
 		});
 	});
 	
