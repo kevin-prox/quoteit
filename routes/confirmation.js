@@ -4,7 +4,7 @@ var router = express.Router();
 /*
  * GET newuser.
  */
-router.get('/newuser/:email/code/:code', function(req, res) {
+router.get('/newuser/:email/x/:code', function(req, res) {
 	var db = req.db;
 	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
@@ -27,18 +27,6 @@ router.get('/newuser/:email/code/:code', function(req, res) {
 				});
 			}
 		});
-	});
-});
-
-/*
- * GET newuser.
- */
-router.get('/test/:email/code/:code', function(req, res) {
-	var db = req.db;
-	
-	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
-		
-		res.json(items+req.params.code);
 	});
 });
 
