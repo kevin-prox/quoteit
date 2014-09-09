@@ -562,7 +562,9 @@ function voteUp(event) {
 		
 		$.each(data, function() {
 		
-			if (this.quote === $(this).attr('rel')) {
+			alert('this.quote = ' + this.quote + ' - quoteId = ' + quoteId);
+		
+			if (this.quote === quoteId) {
 				
 				userVoted = true;
 			}
