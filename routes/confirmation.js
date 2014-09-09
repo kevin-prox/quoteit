@@ -30,4 +30,16 @@ router.get('/newuser/:email/:code', function(req, res) {
 	});
 });
 
+/*
+ * GET newuser.
+ */
+router.get('/test/:email', function(req, res) {
+	var db = req.db;
+	
+	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
+		
+		res.json(items);
+	});
+});
+
 module.exports = router;
