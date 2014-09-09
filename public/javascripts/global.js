@@ -361,6 +361,9 @@ function login(event) {
 
 function updatePageLogin(thisUser, userListData) {
 	
+	// Update quotes as a "refresh" before logging in
+	fillQuotes();
+	
 	userCompleteName = thisUser.name + ' ' + thisUser.last;
 	
 	// Remove Login & Register buttons and put user name & log out
