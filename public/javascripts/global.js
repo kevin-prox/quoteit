@@ -569,8 +569,6 @@ function voteUp(event) {
 		});
 	});
 
-	alert('userVoted = ' + userVoted);
-
 	// Check if user has already voted this quote
 	if (!userVoted) {
 		
