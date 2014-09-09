@@ -4,7 +4,7 @@ var router = express.Router();
 /*
  * GET newuser.
  */
-router.get('/newuser/:email/#/:code', function(req, res) {
+router.get('/newuser/:email/x/:code', function(req, res) {
 	var db = req.db;
 	
 	db.collection('users').find({'email' : req.params.email}).toArray(function(err, items) {
@@ -19,6 +19,7 @@ router.get('/newuser/:email/#/:code', function(req, res) {
 						
 						if (err === null) {
 							
+							res.render('conf', { title: 'Quote It!' });
 						}
 				});
 			}
