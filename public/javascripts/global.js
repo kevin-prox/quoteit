@@ -3,6 +3,7 @@ var userListData = [];
 var thisUser = '';
 var userCompleteName = '';
 var userName = '';
+var userIn = false;
 
 // DOM Ready =============================================================
 $(document).ready(function() {
@@ -88,29 +89,33 @@ function fillQuotes() {
 			}			
 		});
 		
-		// Add click events
-		$('#topQuotesWrapper a').on('click', voteUp);
+		// Add click events and some decoration
 		$('#topQuotesWrapper span').on('click', showUserPage);
-		$('#otherQuotesBody a').on('click', voteUp);
 		$('#otherQuotesBody span').on('click', showUserPage);
 		
-		// Add some decoration
-		$('#topQuotesWrapper a').mouseover(function() {
-
-			$(this).css('color', 'yellow');
-		}); 
-		$('#topQuotesWrapper a').mouseout(function() {
+		if (userIn) {
+			
+			$('#topQuotesWrapper a').on('click', voteUp);
+			$('#otherQuotesBody a').on('click', voteUp);
 	
-			$(this).css('color', '#D6C033');
-		});
-		$('#otherQuotesBody a').mouseover(function() {
+			$('#topQuotesWrapper a').mouseover(function() {
 	
-			$(this).css('color', 'yellow');
-		}); 
-		$('#otherQuotesBody a').mouseout(function() {
-	
-			$(this).css('color', '#D6C033');
-		});
+				$(this).css('color', 'yellow');
+			}); 
+			$('#topQuotesWrapper a').mouseout(function() {
+		
+				$(this).css('color', '#D6C033');
+			});
+			$('#otherQuotesBody a').mouseover(function() {
+		
+				$(this).css('color', 'yellow');
+			}); 
+			$('#otherQuotesBody a').mouseout(function() {
+		
+				$(this).css('color', '#D6C033');
+			});
+		}
+		
 		$('#topQuotesWrapper span').mouseover(function() {
 
 			$(this).css('color', 'aquamarine');
@@ -342,6 +347,7 @@ function login(event) {
 
 		if (error === '') {
 
+			userIn = true;
 			updatePageLogin(thisUser, userListData);	
 		}
 		else {
@@ -502,18 +508,21 @@ function showUserPageByName(name) {
 			$('#userQuotesTitle').text('✩ ' + userName + '´s QUOTES ✩');
 		}
 		
-		// Add OnClick event
-		$('#userQuotesWrapper a').on('click', voteUp);
-		
-		// Add some decoration
-		$('#userQuotesWrapper a').mouseover(function() {
-
-			$(this).css('color', 'yellow');
-		}); 
-		$('#userQuotesWrapper a').mouseout(function() {
+		// Add OnClick event and some decoration
+		if (userIn) {
+			
+			$('#userQuotesWrapper a').on('click', voteUp);
 	
-			$(this).css('color', '#D6C033');
-		});
+			$('#userQuotesWrapper a').mouseover(function() {
+	
+				$(this).css('color', 'yellow');
+			}); 
+			$('#userQuotesWrapper a').mouseout(function() {
+		
+				$(this).css('color', '#D6C033');
+			});
+		}
+		
 		$('#userQuotesWrapper span').mouseover(function() {
 
 			$(this).css('color', 'aquamarine');
