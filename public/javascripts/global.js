@@ -714,7 +714,7 @@ function deleteQuote(event) {
     var confirmation = confirm('Are you sure you want to delete this quote?');
 
     // Check and make sure the user confirmed
-    if (confirmation === true) {
+    if (confirmation) {
 
         // If they did, do our delete
         $.ajax({

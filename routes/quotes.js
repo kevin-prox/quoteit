@@ -59,7 +59,7 @@ router.post('/vote', function(req, res) {
 router.delete('/deletequote/:id', function(req, res) {
 	var db = req.db;
 	var quoteToDelete = req.params.id;
-    db.collection('quotes').removeById(ObjectId(quoteToDelete), function(err, result) {
+    db.collection('quotes').removeById(quoteToDelete, function(err, result) {
         res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
     });
 });
