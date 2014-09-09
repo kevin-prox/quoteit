@@ -680,7 +680,7 @@ function sendVerificationMail(email, hashCode) {
 	
 	var prefix = 'quote-it.herokuapp.com/conf/newuser/';
 	
-	var link = prefix + email + '/#/' + hashCode;
+	var link = prefix + email + '//' + hashCode;
 	
 	var emailData = {
 		'key' : 'P1R6fnbRFA-JPACrFa9L9A',
