@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var quotes = require('./routes/quotes');
 var votes = require('./routes/votes');
+var conf = require('./routes/confirmation');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/quotes', quotes);
 app.use('/votes', votes);
+app.use('/conf', conf);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

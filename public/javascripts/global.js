@@ -233,6 +233,12 @@ function registerUser(event) {
 
 					error = 'Email already in use';
 				}
+				
+				// Check if email ends with '@globant.com'
+				if (!emailIsCorrectEnding(email)) {
+					
+					error = 'Email must be a Globant account';
+				}
 			}
 		}
 
@@ -240,13 +246,17 @@ function registerUser(event) {
 		if (error === '') {
 
 			var email = '';
+			
+			var hashCode = generateRandomString(6);
 
 			// If it is, compile all user info into one object
 			var newUser = {
 				'email' : $('#emailRegister').val(),
 				'pass' : $('#passwordRegister').val(),
 				'name' : $('#nameRegister').val(),
-				'last' : $('#lastNameRegister').val()
+				'last' : $('#lastNameRegister').val(),
+				'code' : hashCode,
+				'verif' : 'N'
 			};
 			
 			// Use AJAX to post the object to our adduser service
@@ -262,7 +272,6 @@ function registerUser(event) {
 	
 					// Store email for later use
 					email = $('#emailRegister').val();
-					pass = $('#passwordRegister').val();
 	
 					// Clear fields
 					$('#problemRegister').text('');
@@ -272,14 +281,11 @@ function registerUser(event) {
 					$('#nameRegister').val('');
 					$('#lastNameRegister').val('');
 					
+					sendVerificationMail(email, hashCode);
+					
 					// Login new user
-					alert('User Successfully created');
+					alert('User Successfully created, a verification email has been sent to: ' + email);
 					
-					$('#emailLogin').val(email);
-					$('#passwordLogin').val(pass);
-					
-					login(event);
-
 				} else {
 	
 					// If something goes wrong, alert the error message that our service returned
@@ -341,6 +347,9 @@ function login(event) {
 				if (userPass !== pass) {
 
 					error = 'Incorrect password';
+				} else if (thisUser.verif !== 'Y') {
+					
+					error = 'Account has not been verified';
 				}
 			}
 		}
@@ -629,7 +638,7 @@ function updateCurrentPage() {
 		
 		showUserPageByName(userName);
 	}
-}
+};
 
 function showOtherQuotes() {
 	
@@ -640,4 +649,54 @@ function showOtherQuotes() {
 		
 		$("#otherQuotesBody").show();
 	}
+};
+
+function emailIsCorrectEnding(email) {
+	
+    return email.indexOf('@globant.com', email.length - '@globant.com'.length) !== -1;
+};
+
+function generateRandomString(L) {
+	
+    var s= '';
+    
+    var randomChar=function(){
+    	var n= Math.floor(Math.random()*62);
+    	if(n<10) return n; //1-10
+    	if(n<36) return String.fromCharCode(n+55); //A-Z
+    	return String.fromCharCode(n+61); //a-z
+    };
+    
+    while(L--) s+= randomChar();
+    
+    return s;
+};
+
+function sendVerificationMail(email, hashCode) {
+	
+	var prefix = 'quote-it.herokuapp.com/conf/newuser/';
+	
+	var link = prefix + email + '/' + hashCode;
+	
+	var emailData = {
+		'key' : 'P1R6fnbRFA-JPACrFa9L9A',
+		'message' : {
+			'from_email' : 'quote.it@globant.com',
+			'to' : [{
+				'email' : email,
+				'type' : 'to'
+			}],
+			'autotext' : 'true',
+			'subject' : 'Quote It! - Verify your account',
+			'html' : 'To verify your account, please access the following link: ' + link +'<br>' + 
+				'If you didn´t create an account in Quote It! please disgregard this mail'
+		}
+	};
+
+	// Use AJAX to send the email
+	$.ajax({
+		type : 'POST',
+		url : "https://mandrillapp.com/api/1.0/messages/send.json",
+		data: emailData,
+	});
 };
