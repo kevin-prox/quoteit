@@ -76,7 +76,8 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText">' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+					'<label class="topQuoteText">' + text +'</label><a class="topQuoteText" href="#" rel=' + id + '>X</a><br>' +
+					'<span class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
