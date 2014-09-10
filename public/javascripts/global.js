@@ -38,12 +38,6 @@ $(document).ready(function() {
 	$('#otherQuotesTitle').mouseout(function() {
 
 		$('#otherQuotesTitle').css('color', 'transparent');
-	}); 
-
-	$('#topQuotesTitle').mouseover(function() {
-		
-		$('#topQuotesTitle').textillate({ in : { effect : 'none'}, out : { effect : 'hinge'} });
-		$('#topQuotesTitle').textillate('out');
 	});
 });
 
@@ -84,7 +78,7 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+					'<label id=' + id + ' title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
@@ -92,7 +86,7 @@ function fillQuotes() {
 				
 				// Create Top Quotes HTML elements
 				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label id=' + id + ' title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 			}			
 		});
@@ -537,7 +531,7 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label id=' + id + ' title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
@@ -762,6 +756,10 @@ function deleteQuote(event) {
 		            else {
 		                alert('Error: ' + response.msg);
 		            }
+		
+					// Animate the deletion
+					$('#' + id).textillate({ in : { effect : 'none'}, out : { effect : 'hinge'} });
+					$('#' + id).textillate('out');
 		
 		            // Update the table
 		            updateCurrentPage();
