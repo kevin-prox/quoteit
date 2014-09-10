@@ -23,6 +23,9 @@ $(document).ready(function() {
 	// Logo click
 	$('#logoImg').on('click', showHome);
 	
+	//Forgot password click
+	$('#forgotPass').on('click', rememberPass);
+	
 	// Other Quotes click
 	$('#otherQuotesTitle').on('click', showOtherQuotes);
 	
@@ -756,6 +759,42 @@ function deleteQuote(event) {
 
         // If they said no to the confirm, do nothing
         return false;
-
     }
+};
+
+function rememberPass() {
+	
+	var email = $('#emailLogin').val();
+	
+	if (email !== '') {
+		
+		$.getJSON('/users/user/' + email, function(data) {
+		
+			var pass = data.pass;
+		
+			var emailData = {
+				'key' : 'P1R6fnbRFA-JPACrFa9L9A',
+				'message' : {
+					'from_email' : 'quote.it@globant.com',
+					'to' : [{
+						'email' : email,
+						'type' : 'to'
+					}],
+					'autotext' : 'true',
+					'subject' : 'Quote It! - Password reminder',
+					'html' : 'Your password is: ' + pass
+				}
+			};
+		
+			// Use AJAX to send the email
+			$.ajax({
+				type : 'POST',
+				url : "https://mandrillapp.com/api/1.0/messages/send.json",
+				data: emailData,
+			});
+		});
+	} else {
+		
+		$('#problemLogin').text('Email is empty');
+	}
 };

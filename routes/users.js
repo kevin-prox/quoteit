@@ -29,10 +29,10 @@ router.post('/adduser', function(req, res) {
 /*
  * GET user.
  */
-router.get('/user/:id', function(req, res) {
+router.get('/user/:email', function(req, res) {
 	var db = req.db;
-	var idToFind = req.params.id;
-	db.collection('users').findOne({ _id : ObjectId(idToFind) }, function(err, user) {
+	var emailToFind = req.params.email;
+	db.collection('users').findOne({ email : emailToFind }, function(err, user) {
 		res.json(user);
 	});
 });
