@@ -731,35 +731,47 @@ function deleteQuote(event) {
 
     event.preventDefault();
 
-    // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete this quote?');
+	var id = $(this).attr('rel');
+	var userName = $('#userName').text();
 
-    // Check and make sure the user confirmed
-    if (confirmation) {
-
-        // If they did, do our delete
-        $.ajax({
-            type: 'DELETE',
-            url: '/quotes/deletequote/' + $(this).attr('rel')
-        }).done(function( response ) {
-
-            // Check for a successful (blank) response
-            if (response.msg === '') {
-            }
-            else {
-                alert('Error: ' + response.msg);
-            }
-
-            // Update the table
-            updateCurrentPage();
-        });
-
-    }
-    else {
-
-        // If they said no to the confirm, do nothing
-        return false;
-    }
+	$.getJSON('/users/user/' + email, function(data) {
+		
+		if (data.user === userName) {
+		
+		    // Pop up a confirmation dialog
+		    var confirmation = confirm('Are you sure you want to delete this quote?');
+		
+		    // Check and make sure the user confirmed
+		    if (confirmation) {
+		
+		        // If they did, do our delete
+		        $.ajax({
+		            type: 'DELETE',
+		            url: '/quotes/deletequote/' + id
+		        }).done(function( response ) {
+		
+		            // Check for a successful (blank) response
+		            if (response.msg === '') {
+		            }
+		            else {
+		                alert('Error: ' + response.msg);
+		            }
+		
+		            // Update the table
+		            updateCurrentPage();
+		        });
+		
+		    }
+		    else {
+		
+		        // If they said no to the confirm, do nothing
+		        return false;
+		    }
+	    } else {
+	    	
+	    	alert('You can only delete your own quotes!');
+	    }
+	});
 };
 
 function rememberPass() {

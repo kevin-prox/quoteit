@@ -64,4 +64,15 @@ router.delete('/deletequote/:id', function(req, res) {
     });
 });
 
+/*
+ * GET quote.
+ */
+router.get('/quote/:id', function(req, res) {
+	var db = req.db;
+	var idToFind = req.params.id;
+	db.collection('quotes').findOne({ _id : ObjectId(idToFind) }, function(err, quote) {
+		res.json(quote);
+	});
+});
+
 module.exports = router;
