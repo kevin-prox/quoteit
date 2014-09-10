@@ -758,8 +758,7 @@ function deleteQuote(event) {
 		            }
 		
 					// Animate the deletion
-					$('#' + id).textillate({ in : { effect : 'none'}, out : { effect : 'hinge'} });
-					$('#' + id).textillate('out');
+					$('#' + id).textillate();
 		
 		            // Update the table
 		            updateCurrentPage();
