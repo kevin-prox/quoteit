@@ -734,7 +734,7 @@ function deleteQuote(event) {
 	var id = $(this).attr('rel');
 	var userName = $('#userName').text();
 
-	$.getJSON('/users/user/' + email, function(data) {
+	$.getJSON('/quotes/quote/' + id, function(data) {
 		
 		if (data.user === userName) {
 		
