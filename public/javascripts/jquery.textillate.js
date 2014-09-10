@@ -17,12 +17,6 @@
     return /Out/.test(effect) || $.inArray(effect, $.fn.textillate.defaults.outEffects) >= 0;
   };
 
-
-  function stringToBoolean(str) {
-    if (str !== "true" && str !== "false") return str;
-    return (str === "true");
-  };
-	  
   // custom get data api method
   function getData (node) {
     var attrs = node.attributes || []
@@ -31,15 +25,14 @@
     if (!attrs.length) return data;
 
     $.each(attrs, function (i, attr) {
-      var nodeName = attr.nodeName.replace(/delayscale/, 'delayScale');
-      if (/^data-in-*/.test(nodeName)) {
+      if (/^data-in-*/.test(attr.nodeName)) {
         data.in = data.in || {};
-        data.in[nodeName.replace(/data-in-/, '')] = stringToBoolean(attr.nodeValue);
-      } else if (/^data-out-*/.test(nodeName)) {
+        data.in[attr.nodeName.replace(/data-in-/, '')] = attr.nodeValue;
+      } else if (/^data-out-*/.test(attr.nodeName)) {
         data.out = data.out || {};
-        data.out[nodeName.replace(/data-out-/, '')] =stringToBoolean(attr.nodeValue);
-      } else if (/^data-*/.test(nodeName)) {
-        data[nodeName.replace(/data-/, '')] = stringToBoolean(attr.nodeValue);
+        data.out[attr.nodeName.replace(/data-out-/, '')] = attr.nodeValue;
+      } else if (/^data-*/.test(attr.nodeName)) {
+        data[attr.nodeName] = attr.nodeValue;
       }
     })
 
@@ -113,15 +106,13 @@
         .text(base.$texts.find(':first-child').html())
         .prependTo($element);
 
-      if (isInEffect(options.in.effect)) {
+      if (isInEffect(options.effect)) {
         base.$current.css('visibility', 'hidden');
-      } else if (isOutEffect(options.out.effect)) {
+      } else if (isOutEffect(options.effect)) {
         base.$current.css('visibility', 'visible');
       }
 
       base.setOptions(options);
-
-      base.timeoutRun = null;
 
       setTimeout(function () {
         base.options.autoStart && base.start();
@@ -133,8 +124,8 @@
     };
 
     base.triggerEvent = function (name) {
-      var e = $.Event(name + '.tlt');
-      $element.trigger(e, base);
+      var e = $.Event(name + '.tlt', { data: base });
+      $element.trigger(e);
       return e;
     };
 
@@ -142,10 +133,8 @@
       index = index || 0;
        
       var $elem = base.$texts.find(':nth-child(' + (index + 1) + ')')
-        , options = $.extend(true, {}, base.options, $elem.length ? getData($elem[0]) : {})
+        , options = $.extend({}, base.options, getData($elem))
         , $chars;
-
-      $elem.addClass('current');
 
       base.triggerEvent('inAnimationBegin');
 
@@ -186,12 +175,11 @@
     base.out = function (cb) {
       var $elem = base.$texts.find(':nth-child(' + (base.currentIndex + 1) + ')')
         , $chars = base.$current.find('[class^="char"]')
-        , options = $.extend(true, {}, base.options, $elem.length ? getData($elem[0]) : {})
+        , options = $.extend({}, base.options, getData($elem));
 
       base.triggerEvent('outAnimationBegin');
 
       animateChars($chars, options.out, function () {
-        $elem.removeClass('current');
         base.triggerEvent('outAnimationEnd');
         if (options.out.callback) options.out.callback();
         if (cb) cb(base);
@@ -213,7 +201,7 @@
           } else {
             index = index % length;
 
-            base.timeoutRun = setTimeout(function () {
+            setTimeout(function () {
               base.out(function () {
                 run(index)
               });
@@ -221,13 +209,6 @@
           }
         });
       }(index || 0));
-    };
-
-    base.stop = function () {
-      if (base.timeoutRun) {
-        clearInterval(base.timeoutRun);
-        base.timeoutRun = null;
-      }
     };
 
     base.init();
