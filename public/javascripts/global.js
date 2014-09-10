@@ -761,7 +761,7 @@ function deleteQuote(event) {
 					$('#' + id).textillate('out');
 		
 		            // Update the table
-		            updateCurrentPage();
+		            //updateCurrentPage();
 		        });
 		
 		    }
