@@ -40,9 +40,9 @@ $(document).ready(function() {
 		$('#otherQuotesTitle').css('color', 'transparent');
 	}); 
 
-	$('#topQuotesTitle').on('click', function() {
+	$('#topQuotesTitle').mouseover(function() {
 		
-		$('#topQuotesTitle').textillate({ out: { effect: 'hinge' } });
+		$('#topQuotesTitle').textillate(out, { out: { effect: 'hinge' } });
 	});
 });
 
