@@ -79,7 +79,7 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="userQuoteText" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+					'<label class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
@@ -87,7 +87,7 @@ function fillQuotes() {
 				
 				// Create Top Quotes HTML elements
 				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="userQuoteText" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 			}			
 		});
@@ -118,7 +118,8 @@ function fillQuotes() {
 				$(this).css('color', '#D6C033');
 			});
 			
-			$('#userQuoteText').on('click', deleteQuote);
+			$('#topQuotesWrapper label').on('click', deleteQuote);
+			$('#otherQuotesBody label').on('click', deleteQuote);
 		}
 		
 		$('#topQuotesWrapper span').mouseover(function() {
@@ -531,7 +532,7 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="userQuoteText" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
@@ -557,7 +558,7 @@ function showUserPageByName(name) {
 				$(this).css('color', '#D6C033');
 			});
 			
-			$('#userQuoteText').on('click', deleteQuote);
+			$('#userQuotesWrapper label').on('click', deleteQuote);
 		}
 		
 		$('#userQuotesWrapper span').mouseover(function() {
