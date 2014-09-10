@@ -42,9 +42,7 @@ $(document).ready(function() {
 
 	$('#topQuotesTitle').on('click', function() {
 		
-		$('#topQuotesTitle').textillate({  
-	        outEffects: [ 'hinge' ] 
-	    });
+		$('#topQuotesTitle').textillate({ out: { effect: 'hinge' } });
 	});
 });
 
