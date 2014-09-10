@@ -736,6 +736,8 @@ function deleteQuote(event) {
 
 	$.getJSON('/quotes/quote/' + id, function(data) {
 		
+		alert('data.user: ' + data.user + ', userName: ' + userName);
+		
 		if (data.user === userName) {
 		
 		    // Pop up a confirmation dialog
