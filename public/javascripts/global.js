@@ -768,9 +768,11 @@ function rememberPass() {
 	
 	if (email !== '') {
 		
+		alert(data);
+		
 		$.getJSON('/users/user/' + email, function(data) {
 		
-			if (data !== undefined) {
+			if (data !== null) {
 					
 				var pass = data.pass;
 			
