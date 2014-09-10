@@ -734,6 +734,8 @@ function deleteQuote(event) {
 	var id = $(this).attr('rel');
 	var userName = $('#userName').text();
 
+	alert('Here I am!');
+
 	$.getJSON('/quotes/quote/' + id, function(data) {
 		
 		alert('data.user: ' + data.user + ', userName: ' + userName);
