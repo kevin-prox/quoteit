@@ -8,7 +8,7 @@ fieldset label {
 }
 
 body {
-	background-color: #E4F1FA;
+	background: url(../images/body_bg.jpg) repeat-x
 }
 
 .userName:visited { 
