@@ -428,3 +428,8 @@ h2 {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+.forgotPass {
+	text-decoration: none;
+	font-family: arial;
+}
