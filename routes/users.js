@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var ObjectId = require('mongoskin').ObjectID;
 
 /*
  * GET userlist.
@@ -22,6 +23,17 @@ router.post('/adduser', function(req, res) {
 		} : {
 			msg : err
 		});
+	});
+});
+
+/*
+ * GET user.
+ */
+router.get('/user/:id', function(req, res) {
+	var db = req.db;
+	var idToFind = req.params.id;
+	db.collection('users').findOne({ _id : ObjectId(idToFind) }, function(err, user) {
+		res.json(user);
 	});
 });
 

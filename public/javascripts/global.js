@@ -220,6 +220,7 @@ function registerUser(event) {
 				error = "Passwords don't match";
 
 			} else {
+				
 				// Obtain email from form
 				var email = $('#emailRegister').val();
 
@@ -240,6 +241,23 @@ function registerUser(event) {
 				if (!emailIsCorrectEnding(email)) {
 					
 					error = 'Email must be a Globant account';
+				} else {
+					
+					//Check First Name + Last Name availability
+					var userName = $('#nameRegister').val() + $('#lastNameRegister').val();
+
+					// Get Index of object based on id value
+					var arrayIndex = userListData.map(function(arrayItem) {
+						return arrayItem.name + arrayItem.last;
+					}).indexOf(userName);
+	
+					var userObject = userListData[arrayIndex];
+	
+					// Check if email is already in use
+					if (userObject !== undefined) {
+	
+						error = 'User name already in use';
+					}
 				}
 			}
 		}
