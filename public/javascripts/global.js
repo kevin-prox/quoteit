@@ -764,11 +764,11 @@ function deleteQuote(event) {
 
 function rememberPass() {
 	
+	alert('here I am');
+	
 	var email = $('#emailLogin').val();
 	
 	if (email !== '') {
-		
-		alert(data);
 		
 		$.getJSON('/users/user/' + email, function(data) {
 		
