@@ -40,6 +40,10 @@ $(document).ready(function() {
 		$('#otherQuotesTitle').css('color', 'transparent');
 	}); 
 
+	$('#topQuotesTitle').on('click', function() {
+		
+		$('#topQuotesTitle').textillate();
+	});
 });
 
 // Functions =============================================================
