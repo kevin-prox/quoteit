@@ -79,7 +79,7 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+					'<label title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
@@ -87,7 +87,7 @@ function fillQuotes() {
 				
 				// Create Top Quotes HTML elements
 				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 			}			
 		});
@@ -532,7 +532,7 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+					'<label title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
@@ -735,11 +735,7 @@ function deleteQuote(event) {
 	var id = $(this).attr('rel');
 	var userName = $('#userName').text();
 
-	alert('Here I am!');
-
 	$.getJSON('/quotes/quote/' + id, function(data) {
-		
-		alert('data.user: ' + data.user + ', userName: ' + userName);
 		
 		if (data.user === userName) {
 		
