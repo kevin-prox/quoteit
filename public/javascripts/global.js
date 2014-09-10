@@ -764,8 +764,6 @@ function deleteQuote(event) {
 
 function rememberPass() {
 	
-	alert('here I am');
-	
 	var email = $('#emailLogin').val();
 	
 	if (email !== '') {
@@ -796,6 +794,8 @@ function rememberPass() {
 					url : "https://mandrillapp.com/api/1.0/messages/send.json",
 					data: emailData,
 				});
+				
+				alert('An email has been sent to ' + email + ' with a password reminder');
 			} else {
 				
 				$('#problemLogin').text('Email not found');
