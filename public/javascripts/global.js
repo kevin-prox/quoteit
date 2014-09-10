@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 	$('#topQuotesTitle').mouseover(function() {
 		
-		$('#topQuotesTitle').textillate(out, { out: { effect: 'hinge' } });
+		$('#topQuotesTitle').textillate('out');
 	});
 });
 
