@@ -42,7 +42,11 @@ $(document).ready(function() {
 
 	$('#topQuotesTitle').on('click', function() {
 		
-		$('#topQuotesTitle').textillate();
+		$('#topQuotesTitle').textillate({  
+	        in: {  
+	            effect: 'rollIn'  
+	        }  
+	    });
 	});
 });
 
