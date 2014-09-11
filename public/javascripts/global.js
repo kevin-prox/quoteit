@@ -430,8 +430,9 @@ function updatePageLogin(thisUser, userListData) {
 	            delay: 100
 	        },
 	        out : {
-	            effect: 'bounce',
-	            delay: 100
+	            effect: 'swing',
+	            delay: 200,
+	            shuffle: true
 	        },
 	        loop: true
 	    }
