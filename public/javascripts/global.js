@@ -57,15 +57,11 @@ function loadPage() {
 		in : {
 			effect : 'tada',
 			shuffle : true
-		}
-	});
-	
-	$('#otherQuotesBody label').textillate({
-		loop : true,
-		in : {
+		},
+		out : {
 			effect : 'tada',
 			shuffle : true
-		}
+		},
 	});
 };
 
