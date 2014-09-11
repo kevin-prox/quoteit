@@ -78,9 +78,13 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author + '" href="#">' + 
+					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '></label><br><span id="A' + id + '" class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
+					$('#T' + id).typed({
+				        strings: [text],
+				        typeSpeed: 0
+				    });
 				idx++;
 			} else {
 				
