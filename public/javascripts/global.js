@@ -427,12 +427,11 @@ function updatePageLogin(thisUser, userListData) {
 		{ 
 			in : {
 	            effect: 'bounce',
-	            delay: 200
+	            delay: 100
 	        },
 	        out : {
 	            effect: 'bounce',
-	            delay: 200,
-	            shuffle: true
+	            delay: 100
 	        },
 	        loop: true
 	    }
