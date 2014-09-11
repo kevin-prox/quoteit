@@ -77,16 +77,16 @@ function fillQuotes() {
 			if (idx <= 3) {
 	
 				// Create Top Quotes HTML elements
-				$('#topQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id=' + id + ' title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author + '" href="#">' + 
+				$('#topQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
+					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
 			} else {
 				
 				// Create Top Quotes HTML elements
-				$('#otherQuotesBody').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id=' + id + ' title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+				$('#otherQuotesBody').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
+					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 			}			
 		});
@@ -530,8 +530,8 @@ function showUserPageByName(name) {
 			id = this._id;
 
 			// Inject the content data into our existing HTML elements			
-			$('#userQuotesWrapper').append('<fieldset><a class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id=' + id + ' title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span class="author" rel="' + author +'" href="#">' + 
+			$('#userQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
+					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="V' + id + '" class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
@@ -758,7 +758,21 @@ function deleteQuote(event) {
 		            }
 		
 					// Animate the deletion
-					$('#' + id).textillate({
+					$('#V' + id).textillate({
+						loop : false,
+						in : {
+							effect : 'hinge',
+							shuffle : true
+						}
+					});
+					$('#T' + id).textillate({
+						loop : false,
+						in : {
+							effect : 'hinge',
+							shuffle : true
+						}
+					});
+					$('#A' + id).textillate({
 						loop : false,
 						in : {
 							effect : 'hinge',
