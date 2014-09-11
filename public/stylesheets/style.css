@@ -7,6 +7,10 @@ fieldset label {
 	text-shadow: 1px 1px #fff;
 }
 
+body {
+	background-color: #E4F1FA;
+}
+
 .userName:visited { 
 	text-decoration: none; 
 }
