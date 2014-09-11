@@ -414,7 +414,7 @@ function login(event) {
 function updatePageLogin(thisUser, userListData) {
 	
 	// Update quotes as a "refresh" before logging in
-	fillQuotes();
+	updateCurrentPage();
 	
 	userCompleteName = thisUser.name + ' ' + thisUser.last;
 	
