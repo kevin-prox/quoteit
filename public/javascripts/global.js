@@ -137,20 +137,19 @@ function fillQuotes() {
 	
 			$(this).css('color', '#6699CC');
 		});
-		$('.topQuoteText').mouseover(function() {
-			$(this).textillate({
-				loop : true,
-				in : {
-					effect : 'bounce'
-				},
-				out : {
-					effect : 'bounce'
-				}
-			});
-		});
-		$('.topQuoteText').mouseout(function() {
-			$(this).textillate('stop');
-		});
+		$('.topQuoteText').textillate(
+			{ in : {
+	            effect: 'tada',
+	            delay: 300,
+	            shuffle: true
+	        },
+	        out : {
+	            effect: 'tada',
+	            delay: 300,
+	            shuffle: true
+	        },
+	        loop: true
+	    });
 	});
 };
 
