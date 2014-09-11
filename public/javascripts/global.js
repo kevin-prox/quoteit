@@ -47,7 +47,7 @@ $(document).ready(function() {
 	            delay: 100
 	        },
 	        out : {
-	            effect: 'flash',
+	            effect: 'fadeIn',
 	            delay: 100
 	        },
 	        loop: true
