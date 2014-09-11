@@ -426,13 +426,13 @@ function updatePageLogin(thisUser, userListData) {
 	$('#userName').textillate(
 		{ 
 			in : {
-	            effect: 'wobble',
-	            delay: 200,
+	            effect: 'flip',
+	            delay: 300,
 	            shuffle: true
 	        },
 	        out : {
-	            effect: 'wobble',
-	            delay: 200,
+	            effect: 'flip',
+	            delay: 300,
 	            shuffle: true
 	        },
 	        loop: true
