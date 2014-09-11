@@ -561,6 +561,8 @@ function showUserPageByName(name) {
 			}
 		});
 		
+		alert('userIn: ' + userIn + ', userName: ' + $('#userName').text());
+		
 		if (userName === $('#userName').text()) {
 			
 			$('#userQuotesTitle').text('✩ MY QUOTES ✩');
