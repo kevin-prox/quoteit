@@ -137,14 +137,19 @@ function fillQuotes() {
 	
 			$(this).css('color', '#6699CC');
 		});
-		
 		$('.topQuoteText').mouseover(function() {
 			$(this).textillate({
-				loop : false,
+				loop : true,
 				in : {
+					effect : 'bounce'
+				},
+				out : {
 					effect : 'bounce'
 				}
 			});
+		});
+		$('.topQuoteText').mouseout(function() {
+			$(this).textillate('stop');
 		});
 	});
 };
