@@ -535,6 +535,8 @@ function showUserPageByName(name) {
 	
 	userName = name;
 	
+	alert('userIn: ' + userIn + ', userName: ' + $('#userName').text());
+	
 	document.getElementById('userQuotesWrapper').innerHTML = '';
 	
 	$.getJSON('/quotes/userquotes/' + userName, function(data) {
@@ -560,8 +562,6 @@ function showUserPageByName(name) {
 				$('#T' + id).attr('title', 'Delete?');
 			}
 		});
-		
-		alert('userIn: ' + userIn + ', userName: ' + $('#userName').text());
 		
 		if (userName === $('#userName').text()) {
 			
