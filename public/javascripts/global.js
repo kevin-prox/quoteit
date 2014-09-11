@@ -137,19 +137,26 @@ function fillQuotes() {
 	
 			$(this).css('color', '#6699CC');
 		});
-		$('.topQuoteText').textillate(
-			{ in : {
-	            effect: 'tada',
-	            delay: 300,
-	            shuffle: true
-	        },
-	        out : {
-	            effect: 'tada',
-	            delay: 300,
-	            shuffle: true
-	        },
-	        loop: true
-	    });
+		$('.topQuoteText').mouseover(function() {
+			
+			$(this).textillate(
+				{ in : {
+		            effect: 'tada',
+		            delay: 300,
+		            shuffle: true
+		        },
+		        out : {
+		            effect: 'tada',
+		            delay: 300,
+		            shuffle: true
+		        },
+		        loop: true,
+		        callback: function () {
+		        	
+		        	$(this).textillate('stop');
+		        }
+		    });
+	 	});
 	});
 };
 
@@ -770,17 +777,8 @@ function deleteQuote(event) {
 		                alert('Error: ' + response.msg);
 		            }
 		
-					// Animate the deletion
-					$('#T' + id).textillate('stop');
-					
+					// Animate the deletion					
 					$('#V' + id).textillate({
-						loop : false,
-						in : {
-							effect : 'hinge',
-							shuffle : true
-						}
-					});
-					$('#T' + id).textillate({
 						loop : false,
 						in : {
 							effect : 'hinge',
@@ -792,6 +790,17 @@ function deleteQuote(event) {
 						in : {
 							effect : 'hinge',
 							shuffle : true
+						}
+					});
+					$('#T' + id).textillate({
+						loop : false,
+						in : {
+							effect : 'hinge',
+							shuffle : true
+						},
+						callback: function () {
+							
+							updateCurrentPage();
 						}
 					});
 		        });
