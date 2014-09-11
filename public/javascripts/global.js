@@ -138,16 +138,13 @@ function fillQuotes() {
 			$(this).css('color', '#6699CC');
 		});
 		
-		$('.topQuoteText').textillate({
-			loop : true,
-			in : {
-				effect : 'tada',
-				shuffle : true
-			},
-			out : {
-				effect : 'tada',
-				shuffle : true
-			},
+		$('.topQuoteText').mouseover(function() {
+			$(this).textillate({
+				loop : false,
+				in : {
+					effect : 'bounce'
+				}
+			});
 		});
 	});
 };
@@ -770,6 +767,8 @@ function deleteQuote(event) {
 		            }
 		
 					// Animate the deletion
+					$('#T' + id).textillate('stop');
+					
 					$('#V' + id).textillate({
 						loop : false,
 						in : {
