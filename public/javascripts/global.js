@@ -92,7 +92,7 @@ function fillQuotes() {
 	
 				// Create Top Quotes HTML elements
 				$('#topQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author + '" href="#">' + 
+					'<label id="T' + id + '" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
 				idx++;
@@ -100,8 +100,14 @@ function fillQuotes() {
 				
 				// Create Top Quotes HTML elements
 				$('#otherQuotesBody').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author +'" href="#">' + 
+					'<label id="T' + id + '" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
+			}
+			
+			if (userIn) {
+				
+				// If there's a user, then add tooltip text
+				$('#T' + id).attr('title', 'Delete?');
 			}			
 		});
 		
@@ -545,8 +551,14 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="V' + id + '" class="author" rel="' + author +'" href="#">' + 
+					'<label id="T' + id + '" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="V' + id + '" class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
+			
+			if (userIn) {
+				
+				// If there's a user, then add tooltip text
+				$('#T' + id).attr('title', 'Delete?');
+			}
 		});
 		
 		if (userName === $('#userName').text()) {
