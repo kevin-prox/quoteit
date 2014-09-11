@@ -423,6 +423,22 @@ function updatePageLogin(thisUser, userListData) {
 				'<option value="' + this.email + '">' + this.name + ' ' + this.last + '</option>');
 	});
 	
+	$('#userName').textillate(
+		{ 
+			in : {
+	            effect: 'wobble',
+	            delay: 200,
+	            shuffle: true
+	        },
+	        out : {
+	            effect: 'wobble',
+	            delay: 200,
+	            shuffle: true
+	        },
+	        loop: true
+	    }
+	);
+	
 	// Clear just in case
 	$('#newQuoteText').val('');
 	
@@ -775,7 +791,7 @@ function deleteQuote(event) {
 					$('#T' + id).textillate({
 						loop : false,
 						in : {
-							delayScale: 4.5,
+							delayScale: 0.5,
 							effect : 'hinge',
 							shuffle : true
 						}
