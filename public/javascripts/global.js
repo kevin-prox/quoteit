@@ -759,12 +759,8 @@ function deleteQuote(event) {
 		
 					// Animate the deletion
 					$('#' + id).textillate({
-						loop : true,
+						loop : false,
 						in : {
-							effect : 'tada',
-							shuffle : true
-						},
-						out : {
 							effect : 'hinge',
 							shuffle : true
 						}
