@@ -137,7 +137,7 @@ function fillQuotes() {
 	
 			$(this).css('color', '#6699CC');
 		});
-		$('.topQuoteText').mouseover(function() {
+		$('.topQuoteText').mouseenter(function() {
 			$(this).textillate({
 				loop : true,
 				in : {
@@ -148,7 +148,7 @@ function fillQuotes() {
 				}
 			});
 		});
-		$('.topQuoteText').mouseout(function() {
+		$('.topQuoteText').mouseleave(function() {
 			$(this).textillate('stop');
 		});
 	});
