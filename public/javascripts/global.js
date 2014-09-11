@@ -423,21 +423,6 @@ function updatePageLogin(thisUser, userListData) {
 				'<option value="' + this.email + '">' + this.name + ' ' + this.last + '</option>');
 	});
 	
-	$('#userName').textillate(
-		{ 
-			in : {
-	            effect: 'bounce',
-	            delay: 100
-	        },
-	        out : {
-	            effect: 'swing',
-	            delay: 200,
-	            shuffle: true
-	        },
-	        loop: true
-	    }
-	);
-	
 	// Clear just in case
 	$('#newQuoteText').val('');
 	
