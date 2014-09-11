@@ -763,24 +763,28 @@ function deleteQuote(event) {
 						in : {
 							effect : 'hinge',
 							shuffle : true
-						}
-					});
-					$('#A' + id).textillate({
-						loop : false,
-						in : {
-							effect : 'hinge',
-							shuffle : true
-						}
-					});
-					$('#T' + id).textillate({
-						loop : false,
-						in : {
-							effect : 'hinge',
-							shuffle : true
 						},
 						callback: function () {
-							
-							updateCurrentPage();
+							$('#T' + id).textillate({
+								loop : false,
+								in : {
+									effect : 'hinge',
+									shuffle : true
+								},
+								callback: function () {
+									$('#A' + id).textillate({
+										loop : false,
+										in : {
+											effect : 'hinge',
+											shuffle : true
+										},
+										callback: function () {
+											
+											updateCurrentPage();
+										}
+									});
+								}
+							});
 						}
 					});
 		        });
