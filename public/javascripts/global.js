@@ -137,26 +137,6 @@ function fillQuotes() {
 	
 			$(this).css('color', '#6699CC');
 		});
-		$('.topQuoteText').mouseover(function() {
-			
-			$(this).textillate(
-				{ in : {
-		            effect: 'tada',
-		            delay: 300,
-		            shuffle: true
-		        },
-		        out : {
-		            effect: 'tada',
-		            delay: 300,
-		            shuffle: true
-		        },
-		        loop: true,
-		        callback: function () {
-		        	
-		        	$(this).textillate('stop');
-		        }
-		    });
-	 	});
 	});
 };
 
