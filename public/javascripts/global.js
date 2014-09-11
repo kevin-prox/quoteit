@@ -52,7 +52,7 @@ function loadPage() {
 
 	fillQuotes();
 	
-	$('.topQuotesText').textillate({
+	$('.topQuoteText').textillate({
 		loop : true,
 		in : {
 			effect : 'tada',
