@@ -781,7 +781,7 @@ function deleteQuote(event) {
 					});
 		
 		            // Update the table
-		            //updateCurrentPage();
+		            updateCurrentPage();
 		        });
 		
 		    }
