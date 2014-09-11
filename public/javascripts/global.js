@@ -535,8 +535,6 @@ function showUserPageByName(name) {
 	
 	userName = name;
 	
-	alert('userIn: ' + userIn + ', userName: ' + $('#userName').text());
-	
 	document.getElementById('userQuotesWrapper').innerHTML = '';
 	
 	$.getJSON('/quotes/userquotes/' + userName, function(data) {
@@ -555,12 +553,6 @@ function showUserPageByName(name) {
 			$('#userQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
 					'<label id="T' + id + '" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="V' + id + '" class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
-			
-			if (userIn) {
-				
-				// If there's a user, then add tooltip text
-				$('#T' + id).attr('title', 'Delete?');
-			}
 		});
 		
 		if (userName === $('#userName').text()) {
@@ -584,6 +576,9 @@ function showUserPageByName(name) {
 		
 				$(this).css('color', '#D6C033');
 			});
+			
+			// If there's a user, then add tooltip text
+			$('#userQuotesWrapper label').attr('title', 'Delete?');
 			
 			$('#userQuotesWrapper label').on('click', deleteQuote);
 		}
