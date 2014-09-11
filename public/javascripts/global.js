@@ -779,9 +779,6 @@ function deleteQuote(event) {
 							shuffle : true
 						}
 					});
-		
-		            // Update the table
-		            updateCurrentPage();
 		        });
 		
 		    }

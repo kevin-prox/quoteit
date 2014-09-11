@@ -7,10 +7,6 @@ fieldset label {
 	text-shadow: 1px 1px #fff;
 }
 
-body {
-	background: url(../images/body_bg.jpg) repeat-x
-}
-
 .userName:visited { 
 	text-decoration: none; 
 }
