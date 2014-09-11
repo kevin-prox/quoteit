@@ -39,6 +39,21 @@ $(document).ready(function() {
 
 		$('#otherQuotesTitle').css('color', 'transparent');
 	});
+	
+	$('.topQuotesTitle').textillate(
+		{ 
+			in : {
+	            effect: 'bounce',
+	            delay: 100
+	        },
+	        out : {
+	            effect: 'swing',
+	            delay: 200,
+	            shuffle: true
+	        },
+	        loop: true
+	    }
+	);
 });
 
 // Functions =============================================================
