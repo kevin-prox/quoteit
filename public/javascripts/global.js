@@ -426,13 +426,12 @@ function updatePageLogin(thisUser, userListData) {
 	$('#userName').textillate(
 		{ 
 			in : {
-	            effect: 'flip',
-	            delay: 300,
-	            shuffle: true
+	            effect: 'bounce',
+	            delay: 200
 	        },
 	        out : {
-	            effect: 'flip',
-	            delay: 300,
+	            effect: 'bounce',
+	            delay: 200,
 	            shuffle: true
 	        },
 	        loop: true
