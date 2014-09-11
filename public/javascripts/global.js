@@ -81,7 +81,7 @@ function fillQuotes() {
 					'<label id="T' + id + '" title="Delete?" class="topQuoteText" rel=' + id + '></label><br><span id="A' + id + '" class="author" rel="' + author + '" href="#">' + 
 					author + '</label></fieldset>');
 				
-					$('.toQuoteText' + id).typed({
+					$('.topQuoteText' + id).typed({
 				        strings: [text],
 				        typeSpeed: 0
 				    });
