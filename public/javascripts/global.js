@@ -54,6 +54,21 @@ $(document).ready(function() {
 	        loop: true
 	    }
 	);
+	
+	$('.otherQuotesTitle').textillate(
+		{ 
+			in : {
+	            effect: 'bounce',
+	            delay: 100
+	        },
+	        out : {
+	            effect: 'swing',
+	            delay: 200,
+	            shuffle: true
+	        },
+	        loop: true
+	    }
+	);
 });
 
 // Functions =============================================================
@@ -438,6 +453,21 @@ function updatePageLogin(thisUser, userListData) {
 				'<option value="' + this.email + '">' + this.name + ' ' + this.last + '</option>');
 	});
 	
+	$('.newQuoteTitle').textillate(
+		{ 
+			in : {
+	            effect: 'bounce',
+	            delay: 100
+	        },
+	        out : {
+	            effect: 'swing',
+	            delay: 200,
+	            shuffle: true
+	        },
+	        loop: true
+	    }
+	);
+	
 	// Clear just in case
 	$('#newQuoteText').val('');
 	
@@ -583,6 +613,21 @@ function showUserPageByName(name) {
 	
 			$(this).css('color', '#6699CC');
 		});
+		
+		$('.userQuotesTitle').textillate(
+		{ 
+			in : {
+	            effect: 'bounce',
+	            delay: 100
+	        },
+	        out : {
+	            effect: 'swing',
+	            delay: 200,
+	            shuffle: true
+	        },
+	        loop: true
+	    }
+	);
 		
 		$('#mainWrapper').hide();
 		$('#userWrapper').show();
