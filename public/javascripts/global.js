@@ -789,28 +789,7 @@ function deleteQuote(event) {
 		    }
 	    } else {
 	    	
-	    	// Animate the selection
-			$('#V' + id).textillate({
-				loop : false,
-				in : {
-					effect : 'bounce',
-					shuffle : true
-				}
-			});
-			$('#T' + id).textillate({
-				loop : false,
-				in : {
-					effect : 'bounce',
-					shuffle : true
-				}
-			});
-			$('#A' + id).textillate({
-				loop : false,
-				in : {
-					effect : 'bounce',
-					shuffle : true
-				}
-			});
+	    	alert('You can only delete your own quotes!');
 	    }
 	});
 };
