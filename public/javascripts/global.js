@@ -51,6 +51,22 @@ function loadPage() {
 	$('#otherQuotesBody').hide();
 
 	fillQuotes();
+	
+	$('#topQuotesWrapper label').textillate({
+		loop : true,
+		in : {
+			effect : 'tada',
+			shuffle : true
+		}
+	});
+	
+	$('#otherQuotesBody label').textillate({
+		loop : true,
+		in : {
+			effect : 'tada',
+			shuffle : true
+		}
+	});
 };
 
 function fillQuotes() {
