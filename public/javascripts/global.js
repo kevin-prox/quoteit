@@ -760,7 +760,7 @@ function deleteQuote(event) {
 					// Animate the deletion
 					var anim = $('#' + id).textillate({ autoStart: false, loop: false });
 					
-					anim.textillate('in');
+					anim.textillate('out');
 		
 		            // Update the table
 		            //updateCurrentPage();
