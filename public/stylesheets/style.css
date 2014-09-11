@@ -416,6 +416,10 @@ h2 {
 	cursor: pointer;
 }
 
+.topQuotesTitle {
+	color: #D6C033;
+}
+
 .pageLink {
 	font-family: Arial, Helvetica, sans-serif;
   	font-size: 140%;
