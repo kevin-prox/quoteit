@@ -37,7 +37,7 @@ $(document).ready(function() {
 	
 	$('#otherQuotesTitle').mouseout(function() {
 
-		$('#otherQuotesTitle').css('color', 'transparent');
+		$('#otherQuotesTitle').css('color', '#CDDDE8');
 	});
 	
 	$('.topQuotesTitle').textillate(
