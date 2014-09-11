@@ -51,18 +51,6 @@ function loadPage() {
 	$('#otherQuotesBody').hide();
 
 	fillQuotes();
-	
-	$('.topQuoteText').textillate({
-		loop : true,
-		in : {
-			effect : 'tada',
-			shuffle : true
-		},
-		out : {
-			effect : 'tada',
-			shuffle : true
-		},
-	});
 };
 
 function fillQuotes() {
@@ -148,6 +136,18 @@ function fillQuotes() {
 		$('#otherQuotesBody span').mouseout(function() {
 	
 			$(this).css('color', '#6699CC');
+		});
+		
+		$('.topQuoteText').textillate({
+			loop : true,
+			in : {
+				effect : 'tada',
+				shuffle : true
+			},
+			out : {
+				effect : 'tada',
+				shuffle : true
+			},
 		});
 	});
 };
