@@ -1,3 +1,7 @@
+/**
+ * Main javascript file
+ */
+
 // Userlist data array for filling the select inputs
 var userListData = [];
 var thisUser = '';
@@ -31,7 +35,7 @@ function loadPage() {
 	$('#userWrapper').hide();
 	$('#otherQuotesBody').hide();
 
-	fillQuotes(userIn);
+	fillQuotes(userIn, userCompleteName);
 };
 
 // Login Form
@@ -324,56 +328,6 @@ function updatePageLogin(thisUser, userListData) {
 	$('#newQuoteContainer').show();
 };
 
-function sendNewQuote(event) {
-	
-	event.preventDefault();
-
-	// Validate if some text was found
-	if ($('#newQuoteText').val()) {
-
-		// If there is, compile all quote info into one object
-		var newQuote = {
-			'quote' : $('#newQuoteText').val(),
-			'user' : $('#newQuoteAuthor option:selected').text(),
-			'votes' : 0
-		};
-
-		// Use AJAX to post the object to our adduser service
-		$.ajax({
-			type : 'POST',
-			data : newQuote,
-			url : '/quotes/addquote',
-			dataType : 'JSON'
-		}).done(function(response) {
-
-			// Check for successful (blank) response
-			if (response.msg === '') {
-
-				// Send notification email to user quoted
-				sendNotificationEmail($('#newQuoteAuthor').val(), userCompleteName, 
-					$('#newQuoteText').val());
-				
-				// Clear the form inputs
-				$('#newQuoteText').val('');
-
-				// Update quote list
-				fillQuotes(userIn);
-
-			} else {
-
-				// If something goes wrong, alert the error message that our service returned
-				alert('Error: ' + response.msg);
-
-			}
-		});
-	} else {
-		
-		// If no text was found, then inform
-		alert('Please add some text');
-		return false;
-	}
-};
-
 function showUserPage(event) {
 	
 	userName = $(this).attr('rel');
@@ -390,10 +344,7 @@ function showUserPageByName(name) {
 	$.getJSON('/quotes/userquotes/' + userName, function(data) {
 		
 		// Clear data
-		// Clear data
-		document.getElementById('topQuotesWrapper').innerHTML='';
-		document.getElementById('otherQuotesBody').innerHTML='';
-		document.getElementById('userQuotesWrapper').innerHTML='';
+		clearQuotesData();
 		
 		$.each(data, function() {
 		
@@ -452,7 +403,7 @@ function showUserPageByName(name) {
 
 function showHome() {
 		
-	fillQuotes(userIn);
+	fillQuotes(userIn, userCompleteName);
 		
 	$('#mainWrapper').show();
 	$('#userWrapper').hide();
@@ -531,7 +482,7 @@ function updateCurrentPage() {
 	
 	if ($('#mainWrapper').is(":visible")) {
 		
-		fillQuotes(userIn);
+		fillQuotes(userIn, userCompleteName);
 	} else {
 		
 		showUserPageByName(userName);
@@ -547,22 +498,6 @@ function showOtherQuotes() {
 		
 		$("#otherQuotesBody").show();
 	}
-};
-
-function generateRandomString(L) {
-	
-    var s= '';
-    
-    var randomChar=function(){
-    	var n= Math.floor(Math.random()*62);
-    	if(n<10) return n; //1-10
-    	if(n<36) return String.fromCharCode(n+55); //A-Z
-    	return String.fromCharCode(n+61); //a-z
-    };
-    
-    while(L--) s+= randomChar();
-    
-    return s;
 };
 
 function rememberPass() {

@@ -1,4 +1,4 @@
-/*
+/**
  * Mail handler tool js
  */
 
