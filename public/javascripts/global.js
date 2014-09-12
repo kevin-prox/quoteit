@@ -11,48 +11,12 @@ $(document).ready(function() {
 	// Populate the quote table in initial page load
 	loadPage();
 
-	// Register User button click
-	$('#register').on('click', registerUser);
-
-	// Login button click
-	$('#login').on('click', login);
-
-	// Add quote click
-	$('#sendNewQuote').on('click', sendNewQuote);
+	// Provide buttons and clickable text with their functions
+	addClickFunctions();
 	
-	// Logo click
-	$('#logoImg').on('click', showHome);
+	// Add some animation and decoration
+	decorateMain();
 	
-	//Forgot password click
-	$('#forgotPass').on('click', rememberPass);
-	
-	// Other Quotes click
-	$('#otherQuotesTitle').on('click', showOtherQuotes);
-	
-	// Add some animation
-	$('#otherQuotesTitle').mouseover(function() {
-
-		$('#otherQuotesTitle').css('color', 'aquamarine');
-	}); 
-	
-	$('#otherQuotesTitle').mouseout(function() {
-
-		$('#otherQuotesTitle').css('color', 'transparent');
-	});
-	
-	$('.topQuotesTitle').textillate(
-		{ 
-			in : {
-	            effect: 'flash',
-	            delay: 100
-	        },
-	        out : {
-	            effect: 'fadeIn',
-	            delay: 100
-	        },
-	        loop: true
-	    }
-	);
 });
 
 // Functions =============================================================
@@ -476,7 +440,7 @@ function sendNewQuote(event) {
 			if (response.msg === '') {
 
 				// Send notification email to user quoted
-				sendNotificationEmail($('#newQuoteAuthor').val(), $('#userName').text(), 
+				sendNotificationEmail($('#newQuoteAuthor').val(), userCompleteName, 
 					$('#newQuoteText').val());
 				
 				// Clear the form inputs
@@ -531,7 +495,7 @@ function showUserPageByName(name) {
 					author + '</label></fieldset>');
 		});
 		
-		if (userName === $('#userName').text()) {
+		if (userName === userCompleteName) {
 			
 			$('#userQuotesTitle').text('✩ MY QUOTES ✩');
 		} else {
@@ -588,10 +552,7 @@ function voteUp(event) {
 	// Flag to see if user has already voted
 	var userVoted = false;
 	
-	// Obtain user name
-	var userName = $('#userName').text();
-	
-	$.getJSON('/votes/votelist/' + userName, function(data) {
+	$.getJSON('/votes/votelist/' + userCompleteName, function(data) {
 		
 		$.each(data, function() {
 		
@@ -619,7 +580,7 @@ function voteUp(event) {
 				if (response.msg === '') {
 		
 					// Store vote in DB
-					var vote = {'user' : $('#userName').text(),
+					var vote = {'user' : userCompleteName,
 								'quote' : quoteId};
 					
 					$.ajax({
@@ -697,11 +658,10 @@ function deleteQuote(event) {
     event.preventDefault();
 
 	var id = $(this).attr('rel');
-	var userName = $('#userName').text();
 
 	$.getJSON('/quotes/quote/' + id, function(data) {
 		
-		if (data.user === userName) {
+		if (data.user === userCompleteName) {
 		
 		    // Pop up a confirmation dialog
 		    var confirmation = confirm('Are you sure you want to delete this quote?');
@@ -785,3 +745,51 @@ function rememberPass() {
 		$('#problemLogin').text('Email is empty');
 	}
 };
+
+function addClickFunctions() {
+	
+	// Register User button click
+	$('#register').on('click', registerUser);
+
+	// Login button click
+	$('#login').on('click', login);
+
+	// Add quote click
+	$('#sendNewQuote').on('click', sendNewQuote);
+	
+	// Logo click
+	$('#logoImg').on('click', showHome);
+	
+	//Forgot password click
+	$('#forgotPass').on('click', rememberPass);
+	
+	// Other Quotes click
+	$('#otherQuotesTitle').on('click', showOtherQuotes);
+}
+
+function decorateMain() {
+	
+	$('#otherQuotesTitle').mouseover(function() {
+
+		$('#otherQuotesTitle').css('color', 'aquamarine');
+	}); 
+	
+	$('#otherQuotesTitle').mouseout(function() {
+
+		$('#otherQuotesTitle').css('color', 'transparent');
+	});
+	
+	$('.topQuotesTitle').textillate(
+		{ 
+			in : {
+	            effect: 'flash',
+	            delay: 100
+	        },
+	        out : {
+	            effect: 'fadeIn',
+	            delay: 100
+	        },
+	        loop: true
+	    }
+	);
+}
