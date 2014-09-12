@@ -2,14 +2,10 @@
  * Quotes Handler js
  */
 
-var userCompleteName = '';
-
 /*
  * Retrieves and show the quotes stored in the DB
  */
-function fillQuotes(userIn, userName) {
-	
-	userCompleteName = userName;
+function fillQuotes(userIn) {
 	
 	$.getJSON('/quotes/quotelist', function(data) {
 
@@ -71,7 +67,7 @@ function deleteQuote(event) {
 
 	$.getJSON('/quotes/quote/' + id, function(data) {
 		
-		if (data.user === userCompleteName) {
+		if (data.user === $('#userName').text()) {
 		
 		    // Pop up a confirmation dialog
 		    var confirmation = confirm('Are you sure you want to delete this quote?');
@@ -152,7 +148,7 @@ function showUserPageByName(name) {
 			appendQuote(wrapperName, id, votes, text, author);
 		});
 		
-		if (userName === userCompleteName) {
+		if (userName === $('#userName').text()) {
 			
 			$('#userQuotesTitle').text('✩ MY QUOTES ✩');
 		} else {
@@ -286,7 +282,7 @@ function sendNewQuote(event) {
 			if (response.msg === '') {
 
 				// Send notification email to user quoted
-				sendNotificationEmail($('#newQuoteAuthor').val(), userCompleteName, 
+				sendNotificationEmail($('#newQuoteAuthor').val(), $('#userName').text(), 
 					$('#newQuoteText').val());
 				
 				// Clear the form inputs

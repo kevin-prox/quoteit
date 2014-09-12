@@ -35,7 +35,7 @@ function loadPage() {
 	$('#userWrapper').hide();
 	$('#otherQuotesBody').hide();
 
-	fillQuotes(userIn, userCompleteName);
+	fillQuotes(userIn);
 };
 
 // Login Form
@@ -185,7 +185,7 @@ function showUserPage(event) {
 
 function showHome() {
 		
-	fillQuotes(userIn, userCompleteName);
+	fillQuotes(userIn);
 		
 	$('#mainWrapper').show();
 	$('#userWrapper').hide();
@@ -264,7 +264,7 @@ function updateCurrentPage() {
 	
 	if ($('#mainWrapper').is(":visible")) {
 		
-		fillQuotes(userIn, userCompleteName);
+		fillQuotes(userIn);
 	} else {
 		
 		showUserPageByName(userName);
