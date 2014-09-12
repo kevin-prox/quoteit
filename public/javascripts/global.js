@@ -401,7 +401,7 @@ function showUserPageByName(name) {
 
 			// Inject the content data into our existing HTML elements			
 			$('#userQuotesWrapper').append('<fieldset><a id="V' + id + '" class="votes" href="#" rel=' + id + '>✩ ' + votes + ' ✩</a>' + 
-					'<label id="T' + id + '" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="V' + id + '" class="author" rel="' + author +'" href="#">' + 
+					'<label id="T' + id + '" class="topQuoteText" rel=' + id + '>' + text +'</label><br><span id="A' + id + '" class="author" rel="' + author +'" href="#">' + 
 					author + '</label></fieldset>');
 		});
 		
