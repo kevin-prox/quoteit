@@ -3,7 +3,7 @@
  */
 
 var emailSuffix = '@globant.com';
-var emailKey = 'P1R6fnbRFA-JPACrFa9L9A';
+var emailKey = process.env.MAIL_KEY;
 
 /*
  * Send a mail to a new registered user to verify his/her email
