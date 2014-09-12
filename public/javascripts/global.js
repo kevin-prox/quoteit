@@ -476,7 +476,8 @@ function sendNewQuote(event) {
 			if (response.msg === '') {
 
 				// Send notification email to user quoted
-				sendEmail();
+				sendNotificationEmail($('#newQuoteAuthor').val(), $('#userName').text(), 
+					$('#newQuoteText').val());
 				
 				// Clear the form inputs
 				$('#newQuoteText').val('');
@@ -497,31 +498,6 @@ function sendNewQuote(event) {
 		alert('Please add some text');
 		return false;
 	}
-};
-
-function sendEmail() {
-
-	var emailData = {
-		'key' : 'P1R6fnbRFA-JPACrFa9L9A',
-		'message' : {
-			'from_email' : 'quote.it@globant.com',
-			'to' : [{
-				'email' : $('#newQuoteAuthor').val(),
-				'name' : $('#newQuoteAuthor option:selected').text(),
-				'type' : 'to'
-			}],
-			'autotext' : 'true',
-			'subject' : 'You´ve been quoted!',
-			'html' : $('#userName').text() + ' quoted you! - ' + $('#newQuoteText').val()
-		}
-	};
-
-	// Use AJAX to send the email
-	$.ajax({
-		type : 'POST',
-		url : "https://mandrillapp.com/api/1.0/messages/send.json",
-		data: emailData,
-	});
 };
 
 function showUserPage(event) {
@@ -699,11 +675,6 @@ function showOtherQuotes() {
 	}
 };
 
-function emailIsCorrectEnding(email) {
-	
-    return email.indexOf('@globant.com', email.length - '@globant.com'.length) !== -1;
-};
-
 function generateRandomString(L) {
 	
     var s= '';
@@ -718,35 +689,6 @@ function generateRandomString(L) {
     while(L--) s+= randomChar();
     
     return s;
-};
-
-function sendVerificationMail(email, hashCode) {
-	
-	var prefix = 'quote-it.herokuapp.com/conf/newuser/';
-	
-	var link = prefix + email + '//' + hashCode;
-	
-	var emailData = {
-		'key' : 'P1R6fnbRFA-JPACrFa9L9A',
-		'message' : {
-			'from_email' : 'quote.it@globant.com',
-			'to' : [{
-				'email' : email,
-				'type' : 'to'
-			}],
-			'autotext' : 'true',
-			'subject' : 'Quote It! - Verify your account',
-			'html' : 'To verify your account, please access the following link: ' + link +'<br>' + 
-				'If you didn´t create an account in Quote It! please disgregard this mail'
-		}
-	};
-
-	// Use AJAX to send the email
-	$.ajax({
-		type : 'POST',
-		url : "https://mandrillapp.com/api/1.0/messages/send.json",
-		data: emailData,
-	});
 };
 
 // Delete quote
@@ -830,26 +772,7 @@ function rememberPass() {
 					
 				var pass = data.pass;
 			
-				var emailData = {
-					'key' : 'P1R6fnbRFA-JPACrFa9L9A',
-					'message' : {
-						'from_email' : 'quote.it@globant.com',
-						'to' : [{
-							'email' : email,
-							'type' : 'to'
-						}],
-						'autotext' : 'true',
-						'subject' : 'Quote It! - Password reminder',
-						'html' : 'Your password is: ' + pass
-					}
-				};
-			
-				// Use AJAX to send the email
-				$.ajax({
-					type : 'POST',
-					url : "https://mandrillapp.com/api/1.0/messages/send.json",
-					data: emailData,
-				});
+				sendPassReminder(email, pass);
 				
 				alert('An email has been sent to ' + email + ' with a password reminder');
 			} else {
