@@ -9,6 +9,7 @@ function fillQuotes(userIn) {
 		// Clear data
 		document.getElementById('topQuotesWrapper').innerHTML='';
 		document.getElementById('otherQuotesBody').innerHTML='';
+		document.getElementById('userQuotesWrapper').innerHTML='';
 
 		// Stick our quote data array into a quotelist variable in the global object
 		quoteListData = data;

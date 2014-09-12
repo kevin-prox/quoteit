@@ -390,6 +390,9 @@ function showUserPageByName(name) {
 	$.getJSON('/quotes/userquotes/' + userName, function(data) {
 		
 		// Clear data
+		// Clear data
+		document.getElementById('topQuotesWrapper').innerHTML='';
+		document.getElementById('otherQuotesBody').innerHTML='';
 		document.getElementById('userQuotesWrapper').innerHTML='';
 		
 		$.each(data, function() {
