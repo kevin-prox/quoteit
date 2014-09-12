@@ -1,7 +1,10 @@
 // Userlist data array for filling the select inputs
 var userListData = [];
 var thisUser = '';
+
+// Logged user name
 var userCompleteName = '';
+
 var userName = '';
 var userIn = false;
 
