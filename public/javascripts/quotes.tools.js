@@ -128,7 +128,52 @@ function deleteQuote(event) {
 	    	alert('You can only delete your own quotes!');
 	    }
 	});
-};
+}
+
+function showUserPageByName(name) {
+	
+	userName = name;
+	
+	$.getJSON('/quotes/userquotes/' + userName, function(data) {
+		
+		// Clear data
+		clearQuotesData();
+		
+		$.each(data, function() {
+		
+			votes = this.votes;
+			text = this.quote;
+			author = this.user;
+			id = this._id;
+			
+			// Create User Quotes HTML elements					
+			wrapperName = 'userQuotesWrapper';
+			
+			appendQuote(wrapperName, id, votes, text, author);
+		});
+		
+		if (userName === userCompleteName) {
+			
+			$('#userQuotesTitle').text('✩ MY QUOTES ✩');
+		} else {
+			
+			$('#userQuotesTitle').text('✩ ' + userName + '´s QUOTES ✩');
+		}
+		
+		// Add OnClick event and some decoration
+		decorateUserPage(userIn);
+		
+		if (userIn) {
+			
+			$('#userQuotesWrapper a').on('click', voteUp);
+			
+			$('#userQuotesWrapper label').on('click', deleteQuote);
+		}
+		
+		$('#mainWrapper').hide();
+		$('#userWrapper').show();
+	});
+}
 
 /*
  * Clears divs with quotes data
