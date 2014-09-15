@@ -76,3 +76,40 @@ function decorateUserPage(userIn) {
 	    }
 	);
 }
+
+/*
+ * Animates the deletion of a quote
+ */
+function animateDeletion(id) {
+	
+	// Animate the deletion					
+	$('#V' + id).textillate({
+		loop : false,
+		in : {
+			effect : 'hinge',
+			shuffle : true
+		},
+		callback : function() {
+			$('#A' + id).textillate({
+				loop : false,
+				in : {
+					effect : 'hinge',
+					shuffle : true
+				},
+				callback : function() {
+					$('#T' + id).textillate({
+						loop : false,
+						in : {
+							delayScale: 0.5,
+							effect : 'hinge',
+							shuffle : true
+						},
+						callback : function() {
+							updateCurrentPage();
+						}
+					});
+				}
+			});
+		}
+	});
+}

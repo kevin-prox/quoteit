@@ -88,29 +88,8 @@ function deleteQuote(event) {
 		                alert('Error: ' + response.msg);
 		            }
 		
-					// Animate the deletion					
-					$('#V' + id).textillate({
-						loop : false,
-						in : {
-							effect : 'hinge',
-							shuffle : true
-						}
-					});
-					$('#A' + id).textillate({
-						loop : false,
-						in : {
-							effect : 'hinge',
-							shuffle : true
-						}
-					});
-					$('#T' + id).textillate({
-						loop : false,
-						in : {
-							delayScale: 0.5,
-							effect : 'hinge',
-							shuffle : true
-						}
-					});
+					// Give some animation to the deleted quote
+					animateDeletion(id);
 		        });
 		
 		    }
