@@ -76,7 +76,10 @@ function decorateUserPage(userIn) {
 	    }
 	);
 	
-	$('#textarea').typetype('TESTING LOGO NAME');
+	$('#textarea').typetype('TESTING LOGO NAME', {
+		e : 0.4,
+		t : 100
+	});
 }
 
 /*
