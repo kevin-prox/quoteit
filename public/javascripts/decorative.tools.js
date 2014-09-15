@@ -87,6 +87,7 @@ function decorateUserPage(userIn) {
 			}
 		},
 		out : {
+			initialDelay : 2000,
 			callback : function() {
 				$('#textarea').backspace(
 					17, // number of chars to backspace
