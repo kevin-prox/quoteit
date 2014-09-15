@@ -10,7 +10,7 @@ var thisUser = '';
 var userCompleteName = '';
 
 var userName = '';
-var userIn = true;
+var userIn = false;
 
 // DOM Ready =============================================================
 $(document).ready(function() {
