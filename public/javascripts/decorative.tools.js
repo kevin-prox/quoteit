@@ -77,6 +77,7 @@ function decorateUserPage(userIn) {
 	);
 	
 	$('#textarea').textillate({
+		initialDelay : 200,
 		loop : true,
 		in : {
 			callback : function() {
