@@ -76,9 +76,26 @@ function decorateUserPage(userIn) {
 	    }
 	);
 	
-	$('#textarea').typetype('TESTING LOGO NAME', {
-		e : 0.4,
-		t : 100
+	$('#textarea').textillate({
+		loop : true,
+		in : {
+			callback : function() {
+				$('#textarea').typetype('TESTING LOGO NAME', {
+					e : 0.2, // error rate. (use e=0 for perfect typing)
+					t : 100 // interval between keypresses
+				});
+			}
+		},
+		out : {
+			callback : function() {
+				$('#textarea').backspace(
+					17, // number of chars to backspace
+				  {
+				    t: 100, // interval between keypresses
+				  }
+				);
+			}
+		}
 	});
 }
 
