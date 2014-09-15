@@ -91,11 +91,9 @@ function decorateUserPage(userIn) {
 				$('#textarea').backspace(
 					17, // number of chars to backspace
 				  {
-				    t: 100, // interval between keypresses
+				    t: 300, // interval between keypresses
 				  }
 				);
-				
-				sleep(1500);
 			}
 		}
 	});
