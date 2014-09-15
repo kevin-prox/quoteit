@@ -75,6 +75,8 @@ function decorateUserPage(userIn) {
 	        loop: true
 	    }
 	);
+	
+	$('#textarea').typetype('TEST Quote It!');
 }
 
 /*
