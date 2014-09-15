@@ -172,49 +172,6 @@ function appendQuote(wrapperName, id, votes, text, author) {
 }
 
 /*
- * Adds some decoration and animation to quotes
- */
-function decorateQuotes(userIn) {
-
-	if (userIn) {
-
-		$('#topQuotesWrapper a').mouseover(function() {
-
-			$(this).css('color', 'yellow');
-		});
-		$('#topQuotesWrapper a').mouseout(function() {
-
-			$(this).css('color', '#D6C033');
-		});
-		$('#otherQuotesBody a').mouseover(function() {
-
-			$(this).css('color', 'yellow');
-		});
-		$('#otherQuotesBody a').mouseout(function() {
-
-			$(this).css('color', '#D6C033');
-		});
-	}
-
-	$('#topQuotesWrapper span').mouseover(function() {
-
-		$(this).css('color', 'aquamarine');
-	});
-	$('#topQuotesWrapper span').mouseout(function() {
-
-		$(this).css('color', '#6699CC');
-	});
-	$('#otherQuotesBody span').mouseover(function() {
-
-		$(this).css('color', 'aquamarine');
-	});
-	$('#otherQuotesBody span').mouseout(function() {
-
-		$(this).css('color', '#6699CC');
-	});
-}
-
-/*
  * Add on click functions to quotes
  */
 function addOnClickFunctions(userIn) {
