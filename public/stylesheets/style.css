@@ -11,6 +11,11 @@ body {
 	background-color: #E4F1FA;
 }
 
+.textArea {
+	margin-left: 15px;
+	font: 50px 'Sansita One';
+}
+
 .userName:visited { 
 	text-decoration: none; 
 }
