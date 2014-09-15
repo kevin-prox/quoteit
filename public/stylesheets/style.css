@@ -11,6 +11,10 @@ body {
 	background-color: #E4F1FA;
 }
 
+.pageName {
+	margin: -50px 0px 0px 60px;
+}
+
 .textArea {
 	margin-left: 15px;
 	font: 40px 'Sansita One';
