@@ -94,10 +94,9 @@ function decorateUserPage(userIn) {
 				    t: 100, // interval between keypresses
 				  }
 				);
+				
+				sleep(1500);
 			}
-		},
-		callback : function() {
-			sleep(1500);
 		}
 	});
 }
