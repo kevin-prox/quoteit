@@ -76,28 +76,10 @@ function decorateUserPage(userIn) {
 	    }
 	);
 	
-	$('#textarea').textillate({
-		loop : true,
-		in : {
-			callback : function() {
-				$('#textarea').typetype('TESTING LOGO NAME', {
-					e : 0.2, // error rate. (use e=0 for perfect typing)
-					t : 100 // interval between keypresses
-				});
-			}
-		},
-		out : {
-			initialDelay : 2000,
-			callback : function() {
-				$('#textarea').backspace(
-					17, // number of chars to backspace
-				  {
-				    t: 300, // interval between keypresses
-				  }
-				);
-			}
-		}
-	});
+	$('#textarea').typetype('Welcome!', { e : 0.2, t : 200 })
+		.delay(1000)
+		.backspace(9, { t : 200 })
+		.typetype('Quote It!', { e : 0.2, t : 200 });
 }
 
 /*
