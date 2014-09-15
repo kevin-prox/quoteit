@@ -76,7 +76,7 @@ function decorateUserPage(userIn) {
 	    }
 	);
 	
-	$('#textarea').typetype('TEST Quote It!');
+	$('#textarea').typetype('TESTING LOGO NAME');
 }
 
 /*
